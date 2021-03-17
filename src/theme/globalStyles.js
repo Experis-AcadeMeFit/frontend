@@ -3,15 +3,15 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle
 `:root{
   --black:#000000;
-  --white:#ffffff;
+  --white:255,255,255;
   --darkblue: #2f323f;
- --darkgreyblue: #383b4c;
+ --darkgreyblue: 47, 50, 63;
  --mediumdarkgrey: #3a3e52;
  --greyblue: #7A7F9B;
- --lightreyblue:#A3A8C5;
+ --lightreyblue:163, 168, 197;
  --lightblue:#CDD2F0;
- --petrolium:#287395;
- --lightpetrolium:#00B7C3;
+ --petrolium:40, 115, 149;
+ --lightpetrolium:0, 183, 195;
  --turquoise:#6FFACC;
  --radius:0.3rem
 }
@@ -101,6 +101,9 @@ select {
 
 h2,h3,h4,p{
   font-family: "Roboto", sans-serif;
+}
+body > #root > div {
+  height: 100vh;
 }
 `;
  

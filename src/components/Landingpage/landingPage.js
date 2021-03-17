@@ -1,18 +1,40 @@
-import React, { Fragment } from 'react';
-import AppHeader from '../AppHeader/AppHeader';
-import Login from '../Login/Login'
+import React, { Fragment, useState, useEffect } from "react";
 
+import UserService from "../../services/user.service";
 import '../CSS/LandingPage.css'
 
 
-function LandingPage() {
+const LandingPage = () => {
+    const [content, setContent] = useState();
 
+    useEffect(() => {
+        UserService.getPublicContent().then(
+            (response) => {
+                console.log(response.data.message)
+                setContent(response.data.message);
+            },
+            (error) => {
+                const _content = [(error.response && error.response.data) || error.message || error.toString()];
+                console.log(_content)
+                setContent(_content);
+            }
+        );
+    }, []);
 
     return (
-    <Fragment>
-        <AppHeader/>
-        <Login/>
-    </Fragment>
+        <Fragment>
+            <div style={{ backgroundImage: "url(/images/garrett-butler-unsplash.jpg)" }} className="landingPageBG">
+              <div>
+             <h3>{content}</h3>
+
+
+              
+              </div>
+
+
+            </div>
+
+        </Fragment>
     )
 
 }
