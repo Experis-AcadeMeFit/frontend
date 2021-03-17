@@ -4,8 +4,9 @@ const GlobalStyle = createGlobalStyle
 `:root{
   --black:#000000;
   --white:#ffffff;
-  --darkblue: #30364E;
- --darkgreyblue: #545973;
+  --darkblue: #2f323f;
+ --darkgreyblue: #383b4c;
+ --mediumdarkgrey: #3a3e52;
  --greyblue: #7A7F9B;
  --lightreyblue:#A3A8C5;
  --lightblue:#CDD2F0;
@@ -51,7 +52,9 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background-color:var( --darkblue)
+  background-color:var( --darkblue);
+  font-size: calc(1.4rem + (26 - 14) * ((100vw - 30rem) / (1600 - 300)));
+  
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
@@ -96,7 +99,7 @@ select {
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-h1,h2,h3,h4,p{
+h2,h3,h4,p{
   font-family: "Roboto", sans-serif;
 }
 `;
