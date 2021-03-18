@@ -5,17 +5,15 @@ import '../CSS/LandingPage.css'
 
 
 const LandingPage = () => {
-    const [content, setContent] = useState();
+    const [content, setContent] = useState("");
 
     useEffect(() => {
         UserService.getPublicContent().then(
             (response) => {
-                console.log(response.data.message)
                 setContent(response.data.message);
             },
             (error) => {
                 const _content = [(error.response && error.response.data) || error.message || error.toString()];
-                console.log(_content)
                 setContent(_content);
             }
         );

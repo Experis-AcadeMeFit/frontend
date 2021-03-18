@@ -1,5 +1,5 @@
 /**https://bezkoder.com/react-hooks-redux-login-registration-example/ */
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Router, Switch, Route, Link } from "react-router-dom";
 
@@ -37,8 +37,8 @@ function App() {
     if (currentUser) {
       console.log("currentUser")
       console.log(currentUser)
-      setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+      setShowModeratorBoard(currentUser.user.roles.includes("ROLE_MODERATOR"));
+      setShowAdminBoard(currentUser.user.roles.includes("ROLE_ADMIN"));
     }
   }, [currentUser]);
 
@@ -47,7 +47,7 @@ function App() {
   };
 
   return (
-    <Fragment>
+    <div>
       <GlobalStyle />
       <AppHeader />
       <Router history={history}>
@@ -79,9 +79,9 @@ function App() {
 
             {currentUser && (
               <li className="menu-link">
-                <Link to={"/user"} className="nav-link">
+       {/*   <Link to={"/user"} className="nav-link">
                   User
-                </Link>
+                </Link> */}
               </li>
             )}
           </div>
@@ -128,7 +128,7 @@ function App() {
       </Router>
 
       <AppFooter />
-    </Fragment>
+    </div>
   );
 }
 

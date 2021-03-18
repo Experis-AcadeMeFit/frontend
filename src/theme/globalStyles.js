@@ -97,13 +97,21 @@ select {
   }
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 
 h2,h3,h4,p{
   font-family: "Roboto", sans-serif;
 }
 body > #root > div {
-  height: 100vh;
+ background:url(/images/garrett-butler-unsplash.jpg);
+ position: relative;
+ display: block;
+ width: 100%;
+ height: 100vh;
+ background-color: var(--darkblue);
+ background-size: cover;    
+ background-blend-mode:luminosity;
+ background-repeat: no-repeat;
 }
 `;
  

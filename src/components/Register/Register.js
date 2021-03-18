@@ -82,7 +82,7 @@ const Register = () => {
 
     form.current.validateAll();
 
-    if (checkBtn.current.context._errors.length === 0) {
+
       dispatch(register(username, email, password))
         .then(() => {
           setSuccessful(true);
@@ -90,7 +90,7 @@ const Register = () => {
         .catch(() => {
           setSuccessful(false);
         });
-    }
+    
   };
 
   return (

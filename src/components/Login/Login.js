@@ -1,3 +1,4 @@
+
 import React, { Fragment,useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
@@ -8,6 +9,7 @@ import CheckButton from "react-validation/build/button";
 
 import { login } from '../../actions/auth'
 import "../CSS/Login.css";
+
 const required = (value) => {
   if (!value) {
     return (
@@ -40,6 +42,7 @@ const Login = (props) => {
     const password = e.target.value;
     setPassword(password);
   };
+ 
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -48,7 +51,7 @@ const Login = (props) => {
 
     form.current.validateAll();
 
-    if (checkBtn.current.context._errors.length === 0) {
+   // if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
         .then(() => {
           props.history.push("/profile");
@@ -57,9 +60,10 @@ const Login = (props) => {
         .catch(() => {
           setLoading(false);
         });
-    } else {
+   // } else {
+     //
       setLoading(false);
-    }
+    //}
   };
 
   if (isLoggedIn) {
@@ -105,7 +109,7 @@ const Login = (props) => {
           </div>
 
           {message && (
-            <div className="form-group">
+            <div className="form">
               <div className="alert alert-danger" role="alert">
                 {message}
               </div>

@@ -3,26 +3,34 @@ import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8080/";
 
+
 const getPublicContent = () => {
   return axios.get(API_URL + "all");
 };
 
-const getUserBoard = () => {
+
+ const getUserBoard = () => {
+  console.log("Callinging USERS from users.service")
+
   return axios.get(API_URL + "users", { headers: authHeader() });
 };
 
-const getModeratorBoard = () => {
+
+  const getModeratorBoard = () => {
+    console.log("CAlling MOD from users.service")
   return axios.get(API_URL + "mod", { headers: authHeader() });
 };
 
-const getAdminBoard = () => {
+
+const  getAdminBoard = () => {
   return axios.get(API_URL + "admin", { headers: authHeader() });
 };
 
+const getFunc={
+   getPublicContent,
+   getUserBoard,
+   getModeratorBoard,
+   getAdminBoard,
+ }
 
-export default {
-  getPublicContent,
-  getUserBoard,
-  getModeratorBoard,
-  getAdminBoard,
-};
+ export default getFunc;

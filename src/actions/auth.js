@@ -45,9 +45,11 @@ import {
     );
   };
   
-  export const login = (username, password) => (dispatch) => {
-    return AuthService.login(username, password).then(
+  export const login = (email, password) => (dispatch) => {
+    return AuthService.login(email, password).then(
       (data) => {
+        console.log("from auth")
+        console.log(data)
         dispatch({
           type: LOGIN_SUCCESS,
           payload: { user: data },
