@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode'
 import GlobalStyle from "./theme/globalStyles";
 
 import AppHeader from './containers/AppHeader/AppHeader'
+import AppFooter from './containers/AppFooter/AppFooter'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 
@@ -69,6 +70,7 @@ function App() {
       </div>
 
     </Router>
+    <AppFooter/>
     </Fragment>
   );
 }

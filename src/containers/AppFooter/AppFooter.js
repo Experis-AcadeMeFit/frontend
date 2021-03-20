@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-import '../CSS/AppFooter.css'
-
+import '../../CSS/AppFooter.css'
 function AppFooter(){
 
 return(

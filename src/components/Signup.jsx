@@ -3,6 +3,7 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { Redirect } from 'react-router-dom'
 import Profile from './Profile'
+import '../CSS/Login.css'
 
 export default function Signup(props) {
   const API_URL='http://localhost:8080/';
@@ -68,12 +69,12 @@ export default function Signup(props) {
 
   return (
     <div>
-      <h3>Registration Form:</h3>
+       < div className="LoginSingupWrap">
+    <div className="form">
 
       <p>{message}</p>
 
       <form onSubmit={handleSumbit}>
-        <label htmlFor='name-input'>name:</label>
 
         <input
           id='name-input'
@@ -83,8 +84,6 @@ export default function Signup(props) {
           value={name}
         />
 
-        <label htmlFor='email-input'>email:</label>
-
         <input
           id='email-input'
           type='email'
@@ -93,8 +92,6 @@ export default function Signup(props) {
           value={email}
         />
 
-        <label htmlFor='password-input'>password:</label>
-
         <input 
           id='password-input'
           type='password'
@@ -102,11 +99,14 @@ export default function Signup(props) {
           onChange={onPasswordChange}
         />
 
-        <input 
+        <input className="CTA"
           type='submit'
-          value='login'
+          value='SIGN UP'
         />
       </form>
+    </div>
+
+    </div>
     </div>
   )
 }
