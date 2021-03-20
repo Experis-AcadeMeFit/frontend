@@ -50,7 +50,8 @@ const Login = (props) => {
     setLoading(true);
 
     form.current.validateAll();
-
+    console.log('From Login')
+console.log(email+' '+password)
    // if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
         .then(() => {
@@ -109,11 +110,11 @@ const Login = (props) => {
           </div>
 
           {message && (
-            <div className="form">
-              <div className="alert alert-danger" role="alert">
+            
+              <p className="alert alert-danger" role="alert">
                 {message}
-              </div>
-            </div>
+              </p>
+           
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>

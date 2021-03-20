@@ -11,8 +11,7 @@ const getPublicContent = () => {
 
  const getUserBoard = () => {
   console.log("Callinging USERS from users.service")
-
-  return axios.get(API_URL + "users", { headers: authHeader() });
+  return axios.get(API_URL + "user", { headers: authHeader() });
 };
 
 
@@ -26,11 +25,10 @@ const  getAdminBoard = () => {
   return axios.get(API_URL + "admin", { headers: authHeader() });
 };
 
-const getFunc={
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
    getPublicContent,
    getUserBoard,
    getModeratorBoard,
    getAdminBoard,
  }
-
- export default getFunc;

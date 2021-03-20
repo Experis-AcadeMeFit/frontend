@@ -82,7 +82,8 @@ const Register = () => {
 
     form.current.validateAll();
 
-
+    if (username !== "" && email !== "" && password !=="" ) {
+      
       dispatch(register(username, email, password))
         .then(() => {
           setSuccessful(true);
@@ -90,7 +91,7 @@ const Register = () => {
         .catch(() => {
           setSuccessful(false);
         });
-    
+      }
   };
 
   return (
@@ -131,14 +132,14 @@ const Register = () => {
                 onChange={onChangePassword}
                 validations={[required, vpassword]} />
 
-              <button className="btn btn-primary btn-block" aria-label="Press this button to login">Sign Up</button>
+              <button className="btn" aria-label="Press this button to login">Sign Up</button>
 
             </div>
             </Fragment>
           )}
 
           {message && (
-            <div className="form-group">
+            <div className="form">
               <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
                 {message}
               </div>

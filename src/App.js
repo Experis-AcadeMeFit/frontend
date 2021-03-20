@@ -79,15 +79,15 @@ function App() {
 
             {currentUser && (
               <li className="menu-link">
-       {/*   <Link to={"/user"} className="nav-link">
-                  User
-                </Link> */}
+         <Link to={"/profile"} className="nav-link">
+                  profile
+                </Link> 
               </li>
             )}
           </div>
 
           {currentUser ? (
-            <div className="navbar-nav ml-auto">
+            <div className="navbar">
               <li className="menu-link">
                 <Link to={"/profile"} className="nav-link">
                   {currentUser.username}
@@ -100,7 +100,7 @@ function App() {
               </li>
             </div>
           ) : (
-            <div className="navbar-nav ml-auto">
+            <div className="navbar">
               <li className="menu-link">
                 <Link to={"/login"} className="nav-link">
                   Login

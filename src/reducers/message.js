@@ -2,7 +2,8 @@ import { SET_MESSAGE, CLEAR_MESSAGE } from "../actions/types";
 
 const initialState = {};
 
-function messages (state = initialState, action) {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -16,4 +17,3 @@ function messages (state = initialState, action) {
       return state;
   }
 }
-export default messages 

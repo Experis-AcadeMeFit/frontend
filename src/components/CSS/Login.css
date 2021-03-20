@@ -53,25 +53,14 @@
 
   .form .message {
     margin: 15px 0 0;
-    color: rgb(var( --white));
+  
     font-size: 12px;
     cursor: pointer;
   }
- 
-  .form .register-form-show {
-    display: block;
-  }
-
-  .form .register-form-hide {
-    display: none;
-  }
-
-  .form .login-form-show {
-    display: block;
-  }
-  .form .login-form-hide {
-    display: none;
-  }
+ .alert{
+  color: rgb(var( --white));
+   font-size:initial;
+ }
 
   .fade-in {
     animation: fadeIn ease 1s;

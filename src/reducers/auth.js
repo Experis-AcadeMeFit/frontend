@@ -12,7 +12,7 @@ import {
     ? { isLoggedIn: true, user }
     : { isLoggedIn: false, user: null };
   
-function authType (state = initialState, action) {
+export default  function (state = initialState, action) {
     const { type, payload } = action;
   
     switch (type) {
@@ -48,5 +48,3 @@ function authType (state = initialState, action) {
         return state;
     }
   }
-
-  export default authType;

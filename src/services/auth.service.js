@@ -31,10 +31,9 @@ const logout = () => {
 };
 
 
-const regInOut={
+export default{
   register,
   login,
   logout,
 };
 
-export default regInOut;

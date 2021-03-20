@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
-
+import '../CSS/Profile.css'
 const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
 
@@ -10,7 +10,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="container">
+    <div className="profileWrap">
    
         <h3>
           <strong>{currentUser.user.username}</strong> Profile
