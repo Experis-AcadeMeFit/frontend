@@ -1,134 +1,75 @@
-/**https://bezkoder.com/react-hooks-redux-login-registration-example/ */
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Router, Switch, Route, Link } from "react-router-dom";
-
+import { Fragment,useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 
 import GlobalStyle from "./theme/globalStyles";
-import AppHeader from "./components/AppHeader/AppHeader";
-import AppFooter from "./components/AppFooter/AppFooter";
-import LandingPage from "./components/Landingpage/landingPage";
-import Login from './components/Login/Login';
-import Register from './components/Register/Register'
-import User from './components/users/User';
-import Admin from './components/users/Admin';
-import Contributor from './components/users/Contributor'
-import Profile from './components/users/Profile'
-import { logout } from "./actions/auth";
-import { clearMessage } from "./actions/message";
 
-import { history } from "./utills/history";
+import AppHeader from './containers/AppHeader/AppHeader'
+import Navbar from './components/Navbar'
+import Login from './components/Login'
 
-import "./App.css";
+import Profile from './components/Profile'
+import Signup from './components/Signup'
+import Welcome from './components/Welcome'
+import './App.css';
 
 function App() {
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-  const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const { user: currentUser } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  // user data if the a user is logged in 
+  const [currentUser, setCurrentUser] = useState(null)
 
+  // if the user navigates away and comes back, look for a jwt
   useEffect(() => {
-    history.listen((location) => {
-      dispatch(clearMessage()); // clear message when changing location
-    });
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (currentUser) {
-      console.log("currentUser")
-      console.log(currentUser)
-      setShowModeratorBoard(currentUser.user.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(currentUser.user.roles.includes("ROLE_ADMIN"));
+    const token = localStorage.getItem('jwtToken')
+    if (token) {
+      // set the current usr if jwt is found
+      setCurrentUser(jwt_decode(token))
+    } else {
+      // double check that current user is null if the jwt is not found 
+      setCurrentUser(null)
     }
-  }, [currentUser]);
+  }, [])
 
-  const logOut = () => {
-    dispatch(logout());
-  };
+  // deletes jwt from local storage to log user out
+  const handleLogout = () => {
+    if (localStorage.getItem('jwtToken')) {
+      localStorage.removeItem('jwtToken');
+      setCurrentUser(null);
+    }
+  }
 
   return (
-    <div>
-      <GlobalStyle />
-      <AppHeader />
-      <Router history={history}>
-      
-        <nav className="header-nav">
+    <Fragment>
+    <GlobalStyle />
+    <AppHeader/>
 
-          <div className="navbar-nav mr-auto">
-            <li className="menu-link ">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
+    <Router>
+    
+        <Navbar currentUser={ currentUser } handleLogout={ handleLogout } />
 
-            {showModeratorBoard && (
-              <li className="menu-link">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
 
-            {showAdminBoard && (
-              <li className="menu-link">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
-                </Link>
-              </li>
-            )}
+      <div className="jib">
+          <Switch>
+            <Route 
+              path='/signup'
+              render={ (props) => <Signup {...props} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
+            />
 
-            {currentUser && (
-              <li className="menu-link">
-         <Link to={"/profile"} className="nav-link">
-                  profile
-                </Link> 
-              </li>
-            )}
-          </div>
+            <Route 
+              path='/login'
+              render={ (props) => <Login {...props} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
+            />
 
-          {currentUser ? (
-            <div className="navbar">
-              <li className="menu-link">
-                <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
-                </Link>
-              </li>
-              <li className="menu-link">
-                <a href="/login" className="nav-link" onClick={logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div className="navbar">
-              <li className="menu-link">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </li>
+            <Route 
+              path="/profile" 
+              render={(props) => currentUser ? <Profile {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }
+            />
 
-              <li className="menu-link">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          )}
-        </nav>
-      <Switch>
-            <Route exact path={["/", "/home"]} component={LandingPage} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
-            <Route path="/user" component={User} />
-            <Route path="/mod" component={Contributor} />
-            <Route path="/admin" component={Admin} />
+            <Route exact path="/" component={ Welcome } />
           </Switch>
-      
-      </Router>
+      </div>
 
-      <AppFooter />
-    </div>
+    </Router>
+    </Fragment>
   );
 }
 

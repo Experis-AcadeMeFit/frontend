@@ -53,7 +53,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color:var( --darkblue);
-  font-size: calc(1rem + (26 - 14) * ((100vw - 30rem) / (1600 - 300)));
+  font-size: calc(1.4rem + (26 - 14) * ((100vw - 30rem) / (1600 - 300)));
   
 }
 
