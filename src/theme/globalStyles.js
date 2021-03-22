@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle
 `:root{
   --black:#000000;
   --white:255,255,255;
-  --darkblue: #2f323f;
+  --darkblue:47, 50, 63;
  --darkgreyblue: 47, 50, 63;
  --mediumdarkgrey: #3a3e52;
  --greyblue: #7A7F9B;
@@ -102,16 +102,17 @@ select {
 h2,h3,h4,p{
   font-family: "Roboto", sans-serif;
 }
-body > #root > div {
- background:url(/images/garrett-butler-unsplash.jpg);
+body > #root {
+ background: linear-gradient(rgba( var(--darkblue) ,.9), rgba(var(--darkblue),.9)), url("/images/garrett-butler-unsplash.jpg");
  position: relative;
  display: block;
  width: 100%;
  height: 100vh;
- background-color: var(--darkblue);
  background-size: cover;    
  background-blend-mode:luminosity;
  background-repeat: no-repeat;
+ background-color:rgba(var(--darkblue),1)
+
 }
 `;
  

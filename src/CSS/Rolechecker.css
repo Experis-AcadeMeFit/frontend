@@ -1,10 +1,8 @@
-.profileWrap {
+.RoleWrap {
     position: relative;
     z-index: 1;
-    background-color: rgba(var(--darkgreyblue),0.9);
-    max-width: 95%;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 1rem;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: var(--radius);
   }
@@ -16,20 +14,23 @@
 }
 
 @media (min-width: 768px) {
-    .profileWrap{
+    .RoleWrap{
         max-width: 80%;
+        padding: 1rem;
     }
 }
 
 @media (min-width: 992px) { 
-    .profileWrap{
-        max-width: 70%;
+    .RoleWrap{
+        max-width: 95%;
+        padding: 1rem;
     }
 }
 
 
 @media (min-width: 1200px) {
-    .profileWrap{
-        max-width: 50%;
+    .RoleWrap{
+        max-width: 95%;
+        padding: 1rem;
     }
 }

@@ -1,9 +1,13 @@
 import {useEffect,Redirect,useState } from 'react'
+import Dashboard from './Dashboard'
+import '../CSS/Rolechecker.css'
 
-
-export default function Profile(props) {
+export default function RoleCheck(props) {
   
+  console.log("props from profile")
+  console.log(props)
   const curUser=props.currentUser;
+  console.log(curUser)
 
   const [showUserContent, setshowUserContent] = useState(false);
   const [showContributerContent, setShowContributerContent] = useState(false);
@@ -27,16 +31,15 @@ export default function Profile(props) {
     privateMessage()
   }, [curUser, props])
   
-   if(!props.currentUser) return <Redirect to='/login' component={ Profile } currentUser={ props.currentUser } />
+   if(!props.currentUser) return <Redirect to='/login' component={ RoleCheck } currentUser={ props.currentUser } />
   return (
-    <div>
-      <h4>hello </h4>
-      <h5>your email is {props.currentUser.user.email}</h5>
-
+    <div className="RoleWrap">
+      <Dashboard className="cal"/>
       <div>
-      {showUserContent &&(<div>Hello User</div>)}
+      {showUserContent &&(<div>Hello {curUser.user.username}</div>)}
       {showContributerContent &&(<div>Hello Contributer</div>)}
       {showAdminContent &&(<div>Hello Admin</div>)}
+      <h5>your email is {curUser.user.email}</h5>
       </div>
     </div>
   )

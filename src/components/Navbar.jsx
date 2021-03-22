@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom'
 import '../CSS/Navbar.css'
 const Navbar = (props) => {
+  
   // if the user is logged in
   const loggedIn = (
     <>
       <Link to="/" style={{ textDecoration: 'none' }}>
-        <span onClick={props.handleLogout}>log out</span>
+       <li><span onClick={props.handleLogout}>log out </span></li>
       </Link>
 
-      <Link to="/profile" style={{ textDecoration: 'none' }}>
-        profile
+      <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+      <li>dashboard</li>
       </Link>
     </>
   )
@@ -30,17 +31,17 @@ const Navbar = (props) => {
   return (
     <nav className="navigation">
         <input type="checkbox" id="nav"/>
-        <label for="nav">
+        <label htmlFor="nav">
         <span></span>
         <span></span>
         <span></span>
       </label>
       <ul  className="menu">
-      <Link to="/" style={{ textDecoration: 'none' }}>
-        <li>user app</li>
-      </Link>
-
       {props.currentUser ? loggedIn : loggedOut}
+
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <li>home&#8962;</li>
+      </Link>
       </ul>
     </nav>
   )

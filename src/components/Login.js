@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import { Redirect } from 'react-router-dom'
-import Profile from './Profile'
+import RoleCheck from './Rolechecker'
+import { Redirect } from 'react-router-dom';
 import '../CSS/Login.css'
 
 const Login=(props) => {
+
+
   const API_URL='http://localhost:8080/';
 
   const [email, setEmail] = useState('')
@@ -43,26 +45,43 @@ const Login=(props) => {
 
       // get user data from the token
       const decoded = jwt_decode(token)
-
+      console.log("decoded")
+      console.log(decoded)
       // set the current user in the top app state
       props.setCurrentUser(decoded)
       
     } catch(error) {
-      // if the email/pass didn't match
-      if(error.response.data.status === 400) {
-        setMessage('bad username or password')
-      } else {
-        // otherwise log the error for debug
-        console.log(error)
-      }
+      console.log(error)
+      // Error 😨
+      if (error.response) {
+        /*
+         * The request was made and the server responded with a
+         * status code that falls out of the range of 2xx
+         */
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+    } else if (error.request) {
+        /*
+         * The request was made but no response was received, `error.request`
+         * is an instance of XMLHttpRequest in the browser and an instance
+         * of http.ClientRequest in Node.js
+         */
+        console.log(error.request);
+    } else {
+        // Something happened in setting up the request and triggered an Error
+        console.log('Error', error.message);
+    }
+    console.log(error);
     }
   }
 
-  if(props.currentUser) return <Redirect to='/profile' component={ Profile } currentUser={ props.currentUser } />
+  //Someone loged in so lets redirect to the daashboard
+  if(props.currentUser) return <Redirect to='/dashboard' component={ RoleCheck } currentUser={ props.currentUser } />
 
   return (
     < div className="LoginSingupWrap">
-    <div className="form">
+    <div className="form fade-in">
 
       <p>{message}</p>
 
@@ -70,7 +89,7 @@ const Login=(props) => {
         <input
           id='email-input'
           type='email'
-          placeholder='user@domain.com'
+          placeholder='Your Eamil'
           onChange={onChangeUserEmail}
           value={email}
           required

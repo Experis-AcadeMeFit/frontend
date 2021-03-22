@@ -9,7 +9,7 @@ import AppFooter from './containers/AppFooter/AppFooter'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 
-import Profile from './components/Profile'
+import RoleCheck from './components/Rolechecker'
 import Signup from './components/Signup'
 import Welcome from './components/Welcome'
 import './App.css';
@@ -24,11 +24,15 @@ function App() {
     if (token) {
       // set the current usr if jwt is found
       setCurrentUser(jwt_decode(token))
+   
     } else {
       // double check that current user is null if the jwt is not found 
       setCurrentUser(null)
     }
   }, [])
+
+
+
 
   // deletes jwt from local storage to log user out
   const handleLogout = () => {
@@ -61,8 +65,8 @@ function App() {
             />
 
             <Route 
-              path="/profile" 
-              render={(props) => currentUser ? <Profile {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }
+              path="/dashboard" 
+              render={(props) => currentUser ? <RoleCheck {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }
             />
 
             <Route exact path="/" component={ Welcome } />

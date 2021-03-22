@@ -1,17 +1,20 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import { Redirect } from 'react-router-dom'
-import Profile from './Profile'
+
 import '../CSS/Login.css'
 
-export default function Signup(props) {
+const  Signup = (props) => {
+  const history = useHistory();
+
   const API_URL='http://localhost:8080/';
   // for controlled form
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  // for flash message
+  
+  // todo set message if you typed wrong
   const [message, setMessage] = useState('')
 
 
@@ -34,43 +37,63 @@ export default function Signup(props) {
       e.preventDefault()
       // post to backend with form submission
       const requestBody = {
-        name: name,
+        username: name,
         email: email,
         password: password,
       }
 
       const response = await axios.post(API_URL+'api/auth/register', requestBody)
-      
+ 
       // destructure response
       const  token  = response.data.accessToken
-
+   
       // Save token to localStorage
       localStorage.setItem('jwtToken', token);
 
       // get user data from the token
       const decoded = jwt_decode(token)
-
+      decodetredirect(decoded)
       // set the current user in the top app state
-      props.setCurrentUser(decoded)
-      
     } catch(error) {
       console.log(error)
-      // if the email was found in the db
-      if(error.response.status === 400) {
-        setMessage('email exists')
-      } else {
-        // otherwise log the error for debug
-        console.log(error)
-      }
+    // Error 😨
+    if (error.response) {
+      /*
+       * The request was made and the server responded with a
+       * status code that falls out of the range of 2xx
+       */
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+  } else if (error.request) {
+      /*
+       * The request was made but no response was received, `error.request`
+       * is an instance of XMLHttpRequest in the browser and an instance
+       * of http.ClientRequest in Node.js
+       */
+      console.log(error.request);
+  } else {
+      // Something happened in setting up the request and triggered an Error
+      console.log('Error', error.message);
+  }
+  console.log(error);
     }
+  
   }
 
- if(props.currentUser) return <Redirect to='/profile' component={ Profile } currentUser={ props.currentUser } />
+  function decodetredirect(decoded){
+   //someone signed up and is now taken to the dashboard
+    if(decoded!==null){
+      history.replace("/dashboard");
+    }  
+
+  }
+
 
   return (
     <div>
-       < div className="LoginSingupWrap">
-    <div className="form">
+       < div className="LoginSingupWrap ">
+    <div className="form fade-in">
 
       <p>{message}</p>
 
@@ -87,7 +110,7 @@ export default function Signup(props) {
         <input
           id='email-input'
           type='email'
-          placeholder='user@domain.com'
+          placeholder='Your Email'
           onChange={onEmailChange}
           value={email}
         />
@@ -110,3 +133,5 @@ export default function Signup(props) {
     </div>
   )
 }
+
+export default Signup
