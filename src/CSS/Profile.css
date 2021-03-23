@@ -83,3 +83,9 @@ input:disabled {
 
     background: rgb(var(--lightpetrolium));
   }
+
+  .bmi{
+      color: #FFFFFF;
+      font-size: 80%;
+  }
+ 
