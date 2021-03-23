@@ -1,0 +1,14 @@
+.avatarWrap{
+    margin-top: 0.5rem;
+    position: relative;
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+    background-color: rgba(var( --petrolium),0.5);
+    overflow: hidden;
+}
+.avatarWrap img{
+  width: 100%;
+  height: auto;
+}

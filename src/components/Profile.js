@@ -1,13 +1,12 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react"
+import Profileavatar from './ProfileAvatar'
 import RangeSlider from './Slider';
-
-import davatar from '../assets/images/default-avatar.png'
 import '../CSS/Profile.css'
 const Profile = (props) => {
 
     //Can change--
-    const [inputDisabled,setInputDisabled] = useState(true)
+    const [inputDisabled, setInputDisabled] = useState(true)
     const [avatar, setAvatar] = useState();
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
@@ -22,11 +21,11 @@ const Profile = (props) => {
 
     const sliderHeightChanged = useCallback(val => {
         setHeightval(val);
-    },[]);
+    }, []);
 
     const sliderWeightChanged = useCallback(val => {
         setWeightval(val);
-    },[]);
+    }, []);
 
     //calculate BMI
     useEffect(() => {
@@ -91,7 +90,7 @@ const Profile = (props) => {
     //change profile settings
     const changeSettings = (e) => {
         e.preventDefault();
-        
+
         const inputs = document.querySelectorAll('.profile  input')
 
         if (inputs[0].className === "") {
@@ -115,27 +114,24 @@ const Profile = (props) => {
     const handleSumbit = (e) => {
         console.log("wuu")
     }
-    
-    //return BMI tyoe
-    const whatTheBMI=(bmi)=>{
+
+    //return BMI type
+    const whatTheBMI = (bmi) => {
         if (isNaN(bmi))
-        return {__html: `<span class="normal"></span>`};
-        if (bmi < 18.6)
-        return {__html: `<span class="under">your BMI is ${bmi}<br> what do you call a thin T-Rex?<br>Ano-Rex...</span>`};
-        else if (bmi >= 18.6 && bmi < 24.9) 
-        return {__html: `<span class="normal">your BMI is ${bmi} <br>You must be working out</span>`};
-        else 
-        return {__html: `<span class="over">your BMI is ${bmi} <br><strong>Fatty Fatty boom-batty</strong></span>`};
-        ;
-
+            return { __html: `<span class="normal"></span>` };
+        if ( bmi < 18.6)
+            return { __html: `<span class="under">your BMI is ${bmi}<br> what do you call a thin T-Rex?<br>Ano-Rex...</span>` };
+        else if (bmi >= 18.6 && bmi < 24.9)
+            return { __html: `<span class="normal">your BMI is ${bmi} <br>You must be working out</span>` };
+        else if (bmi >= 24.9 && bmi < 29.9)
+            return { __html: `<span class="over">your BMI is ${bmi} <br><strong>Fatty Fatty boom-batty</strong></span>` };
+        else
+        return { __html: `<span class="obese">your BMI is ${bmi} <br><strong>You’re so fat, even Thanos couldn’t wipe you.</strong></span>` }; 
     }
-
 
     return (
         <div className="profile">
-            <div className="avatarWrap">
-                <img src={davatar} alt="default avatar" />
-            </div>
+          <Profileavatar/>
             <form onSubmit={handleSumbit}>
 
                 <input
@@ -172,7 +168,7 @@ const Profile = (props) => {
 
             <RangeSlider {...sliderHeight} className="slider" />
             <RangeSlider {...sliderWeight} className="slider" />
-             <div className="bmi" dangerouslySetInnerHTML={whatTheBMI(BMI)}/>
+            <div className="bmi" dangerouslySetInnerHTML={whatTheBMI(BMI)} />
         </div>
     );
 
