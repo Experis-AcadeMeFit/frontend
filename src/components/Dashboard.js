@@ -1,11 +1,19 @@
 import Calendar from './Calendar'
 
-const dashboard =()=>{
-
+import '../CSS/Dashboard.css'
+const dashboard =(props) => {
+const curUse=props.currentUser.user;
     return(
-        <div>
-            <Calendar/>
-        </div>
+        <div className="row">
+                 <div className="column">
+            <Calendar />
+            </div>
+                <div className="column">
+            </div>
+       
+        
+       </div>
+
     );
 }
 

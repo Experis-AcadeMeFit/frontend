@@ -12,6 +12,8 @@ import Login from './components/Login'
 import RoleCheck from './components/Rolechecker'
 import Signup from './components/Signup'
 import Welcome from './components/Welcome'
+import Profile from './components/Profile'
+
 import './App.css';
 
 function App() {
@@ -42,6 +44,20 @@ function App() {
     }
   }
 
+  //show profoile
+  //not working in mobile view?
+  const showProfile =()=>{
+    const profileView=document.querySelector('.profile') 
+    if (profileView.className !== 'profile popout') {
+      profileView.classList.remove("popin")
+      profileView.classList.add("popout");
+
+  } else {
+    profileView.classList.remove("popout")
+    profileView.classList.add("popin");
+  }
+  }
+
   return (
     <Fragment>
     <GlobalStyle />
@@ -49,7 +65,7 @@ function App() {
 
     <Router>
     
-        <Navbar currentUser={ currentUser } handleLogout={ handleLogout } />
+        <Navbar currentUser={ currentUser } handleLogout={ handleLogout } showProfile={showProfile}/>
 
 
       <div className="jib">
@@ -68,6 +84,13 @@ function App() {
               path="/dashboard" 
               render={(props) => currentUser ? <RoleCheck {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }
             />
+
+                <Route 
+              path="/profile" 
+              render={(props) => currentUser ? <RoleCheck {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }
+            />
+
+
 
             <Route exact path="/" component={ Welcome } />
           </Switch>

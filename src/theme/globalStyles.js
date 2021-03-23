@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-
 const GlobalStyle = createGlobalStyle
 `:root{
   --black:#000000;
@@ -112,7 +111,9 @@ body > #root {
  background-blend-mode:luminosity;
  background-repeat: no-repeat;
  background-color:rgba(var(--darkblue),1)
-
+}
+body{
+  overflow:hidden;
 }
 `;
  

@@ -6,11 +6,15 @@ const Navbar = (props) => {
   const loggedIn = (
     <>
       <Link to="/" style={{ textDecoration: 'none' }}>
-       <li><span onClick={props.handleLogout}>log out </span></li>
+       <li><span onClick={props.handleLogout}>log out</span></li>
       </Link>
 
       <Link to="/dashboard" style={{ textDecoration: 'none' }}>
       <li>dashboard</li>
+      </Link>
+
+      <Link to="/profile" style={{ textDecoration: 'none' }}>
+      <li><span onClick={props.showProfile}>profile</span></li>
       </Link>
     </>
   )
