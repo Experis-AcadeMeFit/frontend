@@ -15,7 +15,7 @@ const  Signup = (props) => {
   const [password, setPassword] = useState('')
   
   // todo set message if you typed wrong
-  const [message, setMessage] = useState('')
+ // const [message, setMessage] = useState('')
 
 
   const onNameChange = (e) => {
@@ -95,8 +95,7 @@ const  Signup = (props) => {
        < div className="LoginSingupWrap ">
     <div className="form fade-in">
 
-      <p>{message}</p>
-
+     {/* <p>{message}</p>*/}
       <form onSubmit={handleSumbit}>
 
         <input

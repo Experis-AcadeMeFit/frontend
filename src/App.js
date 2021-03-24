@@ -12,7 +12,6 @@ import Login from './components/Login'
 import RoleCheck from './components/Rolechecker'
 import Signup from './components/Signup'
 import Welcome from './components/Welcome'
-import Profile from './components/Profile'
 
 import './App.css';
 

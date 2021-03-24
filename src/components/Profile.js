@@ -7,7 +7,7 @@ const Profile = (props) => {
 
     //Can change--
     const [inputDisabled, setInputDisabled] = useState(true)
-    const [avatar, setAvatar] = useState();
+  //  const [avatar, setAvatar] = useState();
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();

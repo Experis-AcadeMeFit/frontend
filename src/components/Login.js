@@ -12,7 +12,7 @@ const Login=(props) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [message, setMessage] = useState('')
+  //const [message, setMessage] = useState('')
   
   
     const onChangeUserEmail = (e) => {
@@ -45,8 +45,7 @@ const Login=(props) => {
 
       // get user data from the token
       const decoded = jwt_decode(token)
-      console.log("decoded")
-      console.log(decoded)
+
       // set the current user in the top app state
       props.setCurrentUser(decoded)
       
@@ -83,7 +82,7 @@ const Login=(props) => {
     < div className="LoginSingupWrap">
     <div className="form fade-in">
 
-      <p>{message}</p>
+     {/* <p>{message}</p> */}
 
       <form onSubmit={handleSumbit}>
         <input
