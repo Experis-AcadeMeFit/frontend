@@ -4,18 +4,17 @@ import davatar from '../assets/images/default-avatar.png'
 import { useState } from 'react'
 
 const Profileavatar =()=>{
-    const [avatar,SetAvatar]=useState();
+    const [avatar,SetAvatar]=useState(davatar);
+    const [file,SetFile]=useState('');
 
     const uploadAvatar =(e)=> {
+        console.log("wuu")
         e.preventDefault();
         const reader = new FileReader();
         const file = e.target.files[0];
         reader.onloadend = () => {
-          this.setState({
-            file: file,
-            imagePreviewUrl: reader.result
-          });
-          
+            SetFile(file)
+            SetAvatar(reader.result)
         }
         reader.readAsDataURL(file);
       }
@@ -23,7 +22,12 @@ const Profileavatar =()=>{
 return(
 
     <div className="avatarWrap">
-        <img src={davatar} alt="default avatar" />
+        <img  src={avatar} alt="default avatar" />
+        
+        <label for="file-upload" className="fileInput">
+             <p class="uploadIcon"><span>&#8673;</span></p>
+            </label>
+        <input id="file-upload" type="file" onChange={(e)=>uploadAvatar(e)} />
     </div>
 )
 }
