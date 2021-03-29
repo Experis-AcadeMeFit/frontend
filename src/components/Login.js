@@ -2,13 +2,13 @@ import { useState } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import RoleCheck from './Rolechecker'
+import {API_URL,API_AUTHLOGIN} from '../utills/APICalls'
 import { Redirect } from 'react-router-dom';
 import '../CSS/Login.css'
 
 const Login=(props) => {
 
 
-  const API_URL='http://localhost:8080/';
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -35,7 +35,7 @@ const Login=(props) => {
       }
 
       //login with API and get jwt
-      const response = await axios.post(API_URL+'api/auth/login', requestBody)
+      const response = await axios.post(API_URL+API_AUTHLOGIN, requestBody)
       
       // destructure response
       const  token  = response.data.accessToken

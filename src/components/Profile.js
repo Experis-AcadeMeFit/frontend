@@ -8,9 +8,9 @@ const Profile = (props) => {
     //Can change--
     const [inputDisabled, setInputDisabled] = useState(true)
   //  const [avatar, setAvatar] = useState();
-    const [username, setUsername] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     /*TODO */
     //Can change--
@@ -97,14 +97,14 @@ const Profile = (props) => {
             setInputDisabled(false)
             inputs.forEach(input => {
                 input.classList.add("inputEnabled");
-                input.disabled = inputDisabled
+                input.disabled = {inputDisabled}
             });
 
         } else {
             inputs.forEach(input => {
                 setInputDisabled(true)
                 input.classList.remove("inputEnabled")
-                input.disabled = inputDisabled
+                input.disabled = {inputDisabled}
 
             });
         }

@@ -1,19 +1,23 @@
-import Calendar from './Calendar'
+import ProgramComponent from './programs/ProgramComponent'
+import WorkoutComponent from './workout/WorkoutComponent'
+import '../CSS/Dashboard.css'
+
+
 import ExcrecisesList from './exercises/ExercisesList'
 
-import '../CSS/Dashboard.css'
 const dashboard =(props) => {
 //const curUse=props.currentUser.user;
     return(
         <div className="row">
                  <div className="column">
-            <Calendar />
+            <ProgramComponent/>
             </div>
                 <div className="column">
-            
+         <WorkoutComponent/>
+            </div>
+            <div className="column">
             <ExcrecisesList/>
             </div>
-       
         
        </div>
 

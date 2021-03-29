@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getExercises } from '../../utills/ExercisesCRUD'
+import ExercisesComponent from './ExercisesComponent'
 
 const ExcrecisesList=()=>{
     
@@ -20,10 +21,9 @@ const ExcrecisesList=()=>{
   
 
     return(
-        <div>
-            <h4>exercises</h4>
-            <ul> 
-            {exerciseslist.map((exercises, index) => <li key={index}>{exercises.name}</li>)}
+        <div className="exlist">
+            <ul className="exlist"> 
+            {exerciseslist.map((exercises, index) => <ExercisesComponent key={index} exercises={exercises}/>)}
             </ul>
         </div>
     )
@@ -31,3 +31,4 @@ const ExcrecisesList=()=>{
 }
 
 export default ExcrecisesList
+//li key={index}>{exercises.name} {exercises.musclegroup[3]}</li>

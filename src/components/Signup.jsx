@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-
+import {API_URL, API_AUTHREGISTRE} from '../utills/APICalls'
 import '../CSS/Login.css'
 
 const  Signup = (props) => {
   const history = useHistory();
 
-  const API_URL='http://localhost:8080/';
+ 
   // for controlled form
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -42,7 +42,7 @@ const  Signup = (props) => {
         password: password,
       }
 
-      const response = await axios.post(API_URL+'api/auth/register', requestBody)
+      const response = await axios.post(API_URL+ API_AUTHREGISTRE, requestBody)
  
       // destructure response
       const  token  = response.data.accessToken

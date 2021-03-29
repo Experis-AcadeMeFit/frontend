@@ -12,13 +12,16 @@ const GlobalStyle = createGlobalStyle
  --petrolium:40, 115, 149;
  --lightpetrolium:0, 183, 195;
  --turquoise:111, 250, 204;
+ --fail:#E46F6F;
  --radius:0.3rem
 }
 /* Box sizing rules */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 /* Remove default padding */
@@ -44,12 +47,18 @@ dl,
 dd {
   margin: 0;
 }
+html {
+  font-size: 100%;
+  -ms-text-size-adjust: 100%; 
+  -webkit-text-size-adjust: 100%; 
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-smoothing: subpixel-antialiased;
 
+}
 /* Set core body defaults */
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color:var( --darkblue);
   font-size: calc(1rem + (26 - 14) * ((100vw - 30rem) / (1600 - 300)));
@@ -84,6 +93,8 @@ button,
 textarea,
 select {
   font: inherit;
+  font-size: calc(0.3rem + (26 - 16) * ((100vw - 30rem) / (1600 - 300)));
+
 }
 
 /* Remove all animations and transitions for people that prefer not to see them */
@@ -98,7 +109,7 @@ select {
 
 
 
-h2,h3,h4,p{
+h2,h3,h4,h5,p{
   font-family: "Roboto", sans-serif;
 }
 body > #root {
