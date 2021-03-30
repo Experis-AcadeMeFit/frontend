@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import '../CSS/Navbar.css'
 const Navbar = (props) => {
-  console.log("Props from navbar")
+
   // if the user is logged in
   const loggedIn = (
     <>
