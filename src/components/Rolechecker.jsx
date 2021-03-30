@@ -1,4 +1,7 @@
-import {useEffect,Redirect,useState,Fragment } from 'react'
+import {useEffect,Redirect,useState,useContext,Fragment } from 'react'
+
+import {UserContext,ContributerContext ,AdminContext,ProfileContext } from './exercises/MuscleContext';
+
 import Dashboard from './Dashboard'
 
 
@@ -10,10 +13,15 @@ import '../CSS/Rolechecker.css'
 export default function RoleCheck(props) {
   
   const curUser=props.currentUser;
-
+/*
   const [user, setUser] = useState(false);
   const [contributer, setContributer] = useState(false);
   const [admin, setAdmin] = useState(false);
+*/
+  const [user, setUser] = useContext( UserContext);
+  const [contributer, setContributer] = useContext( ContributerContext);
+  const [admin, setAdmin] = useContext( AdminContext);
+
 
   useEffect(() => {
     const setRoles = async function() {

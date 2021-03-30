@@ -1,13 +1,22 @@
 
-import { useState, useEffect, useCallback, useMemo } from "react"
+import { useState, useEffect, useCallback, useMemo,useContext } from "react"
+import {UserContext,ContributerContext } from './exercises/MuscleContext';
+
 import Profileavatar from './ProfileAvatar'
 import RangeSlider from './Slider';
 import '../CSS/Profile.css'
 const Profile = (props) => {
-console.log(props.currentUser)
+
+    const [user, setUser] = useContext( UserContext);
+    const [contributer, setContributer] = useContext( ContributerContext);
+ 
+
+    useEffect(() => {
+        console.log(user)
+    }, [])
 
 return(
-    <h2>im profile</h2>
+    <h2>hej</h2>
 )
 /*
     const [isProfile,setIsProfile] =useState('')

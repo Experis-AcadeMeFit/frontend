@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import RoleCheck from './Rolechecker'
+import Dashboard from './Dashboard'
 import {API_URL,API_AUTHLOGIN} from '../utills/APICalls'
 import { Redirect } from 'react-router-dom';
 import '../CSS/Login.css'
+import {UserContext,ContributerContext ,AdminContext } from './exercises/MuscleContext';
 
-const Login=(props) => {
+const Login=() => {
 
-
+  const [user, setUser] = useContext( UserContext);
+  const [contributer, setContributer] = useContext( ContributerContext);
+  const [admin, setAdmin] = useContext( AdminContext);
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -47,7 +50,12 @@ const Login=(props) => {
       const decoded = jwt_decode(token)
 
       // set the current user in the top app state
-      props.setCurrentUser(decoded)
+     // props.setCurrentUser(decoded)
+
+      
+       setUser(decoded)
+       setContributer(decoded.user.roles.includes("ROLE_CONTRIBUTOR"));
+       setAdmin(decoded.user.roles.includes("ROLE_ADMIN")); 
       
     } catch(error) {
       console.log(error)
@@ -76,7 +84,7 @@ const Login=(props) => {
   }
 
   //Someone loged in so lets redirect to the daashboard
-  if(props.currentUser) return <Redirect to='/dashboard' component={ RoleCheck } currentUser={ props.currentUser } />
+  if(user) return <Redirect to='/dashboard' component={ Dashboard } />
 
   return (
     < div className="LoginSingupWrap">

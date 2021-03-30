@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import '../CSS/Navbar.css'
 const Navbar = (props) => {
-  
+  console.log("Props from navbar")
   // if the user is logged in
   const loggedIn = (
     <>
@@ -19,7 +19,6 @@ const Navbar = (props) => {
       <Link to= "/exercises" style={{ textDecoration: 'none' }}>
       <li>exercises</li>
       </Link>
-
 
       
       <Link to="/profile" style={{ textDecoration: 'none' }}>

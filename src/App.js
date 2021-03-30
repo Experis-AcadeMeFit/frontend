@@ -1,8 +1,11 @@
-import { Fragment,useState, useEffect } from 'react'
+import { Fragment,useState, useEffect,useContext } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 
 import GlobalStyle from "./theme/globalStyles";
+
+import {UserContext,ContributerContext ,AdminContext } from './components/exercises/MuscleContext';
+
 
 import AppHeader from './containers/AppHeader/AppHeader'
 import AppFooter from './containers/AppFooter/AppFooter'
@@ -13,29 +16,34 @@ import RoleCheck from './components/Rolechecker'
 import Signup from './components/Signup'
 import Welcome from './components/Welcome'
 import Profile from './components/Profile'
-
+import Dashboard from './components/Dashboard'
 import Exercises from './components/exercises/Exercises'
 
 
 import './App.css';
 
 function App() {
+
   // user data if the a user is logged in 
-  const [currentUser, setCurrentUser] = useState(null)
-  const [profile, setProfile] = useState(null)
+  const [user, setUser] = useContext( UserContext);
+  const [contributer, setContributer] = useContext( ContributerContext);
 
   // if the user navigates away and comes back, look for a jwt
   useEffect(() => {
     const token = localStorage.getItem('jwtToken')
     if (token) {
       // set the current usr if jwt is found
-      setCurrentUser(jwt_decode(token))
-   
+      const decoded = jwt_decode(token)
+      setUser(decoded)
+      setContributer(decoded.user.roles.includes("ROLE_CONTRIBUTOR"));
+     
+
     } else {
       // double check that current user is null if the jwt is not found 
-      setCurrentUser(null)
+      setUser(null)
     }
   }, [])
+
 
 
 
@@ -44,7 +52,7 @@ function App() {
   const handleLogout = () => {
     if (localStorage.getItem('jwtToken')) {
       localStorage.removeItem('jwtToken');
-      setCurrentUser(null);
+      setUser(null)
     }
   }
 
@@ -57,17 +65,21 @@ function App() {
 
     <Router>
     
-        <Navbar currentUser={ currentUser } handleLogout={ handleLogout }/>
+        <Navbar currentUser={ user } handleLogout={ handleLogout }/>
 
 
       <div className="jib">
           <Switch>
-            <Route 
+        
+
+         
+          {/*
+
+              <Route 
               path='/signup'
               render={ (props) => <Signup {...props} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
             />
-
-            <Route 
+          <Route 
               path='/login'
               render={ (props) => <Login {...props} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
             />
@@ -76,20 +88,14 @@ function App() {
               path="/dashboard" 
               render={(props) => currentUser ? <RoleCheck {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }
             />
-            
-
-
+             */}
+             <Route path="/Signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/dashboard" component={Dashboard} />
               <Route path="/exercises" component={Exercises} />
-              <Route  path="/profile" component={() => <Profile  currentUser={ currentUser }/>} />
-             { /*
-        <Route  path="/profile" 
-              render={(props) => currentUser ? <RoleCheck {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }/>
-          */}
-            
+              <Route  path="/profile" component={Profile} />
+              <Route exact path="/" component={ Welcome } />
 
-
-
-            <Route exact path="/" component={ Welcome } />
           </Switch>
       </div>
 
