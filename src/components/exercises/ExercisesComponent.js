@@ -1,13 +1,12 @@
 
 import { useState, useEffect,useRef, useContext } from 'react'
-import {  MusclesFigureContext,MusclesListContext } from './MuscleContext';
+import {  MusclesFigureContext } from './MuscleContext';
 
 import '../../CSS/ExcersiceComponent.css'
 
 const ExcerciseComponent = props => {
 
     const [musclegroup, setMusclegroup] = useContext( MusclesFigureContext);
-    const [musclesList, setMusclesList] = useContext(MusclesListContext);
 
     const [id, setId] = useState(props.exercises.id)
     const [name, setname] = useState(props.exercises.name)
@@ -17,7 +16,7 @@ const ExcerciseComponent = props => {
 
 
 
-//get selected Muscle group from list
+    //set selected Muscle group from list to highlight SVG figure's muscles group
     const updateMusclegroup=(e)=> {
 
         if (e.target && e.target !== undefined) {
@@ -33,7 +32,7 @@ const ExcerciseComponent = props => {
         console.log("Add shit to workout")
     }
 
-//show hide excercise detail
+    //show hide excercise detail
     const toggle = () => {
         setShowDetail(showDetail => !showDetail);
        

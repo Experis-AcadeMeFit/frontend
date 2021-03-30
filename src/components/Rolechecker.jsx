@@ -38,7 +38,7 @@ export default function RoleCheck(props) {
 
       </div>
 
-      <Profile curUser={curUser.user} />
+     {/* <Profile curUser={curUser.user} />*/}
  </Fragment>
 
   )

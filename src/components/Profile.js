@@ -4,6 +4,13 @@ import Profileavatar from './ProfileAvatar'
 import RangeSlider from './Slider';
 import '../CSS/Profile.css'
 const Profile = (props) => {
+console.log(props.currentUser)
+
+return(
+    <h2>im profile</h2>
+)
+/*
+    const [isProfile,setIsProfile] =useState('')
 
     //Can change--
     const [inputDisabled, setInputDisabled] = useState(true)
@@ -12,7 +19,6 @@ const Profile = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    /*TODO */
     //Can change--
     //ftness attributes 
     const [heightval, setHeightval] = useState(0);
@@ -62,9 +68,33 @@ const Profile = (props) => {
 
 
 
-    //request to be a contributor 
 
-    //Ftness level evaluation
+    
+
+//show profoile
+  //not working in mobile view?
+  const showProfile =()=>{
+    const profileView=document.querySelector('.profile') 
+
+    if (profileView.className !== 'profile popout') {
+      profileView.classList.remove("popin")
+      profileView.classList.add("popout");
+
+  } else {
+    profileView.classList.remove("popout")
+    profileView.classList.add("popin");
+  }
+  
+  }
+
+  useEffect(() => {
+    let path = (new URL(document.location)).pathname; 
+    setIsProfile(path)
+    if(isProfile==="/profile"){
+        showProfile()
+    }
+    
+    });
 
 
     useEffect(() => {
@@ -161,7 +191,7 @@ const Profile = (props) => {
                     disabled={inputDisabled}
                 />
 
-                <button className="CTA"
+                <button className="PCTA"
                     onClick={changeSettings}
                 >change settings</button>
             </form>
@@ -171,7 +201,7 @@ const Profile = (props) => {
             <div className="bmi" dangerouslySetInnerHTML={whatTheBMI(BMI)} />
         </div>
     );
-
+*/
 }
 
 export default Profile

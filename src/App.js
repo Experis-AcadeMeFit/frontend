@@ -12,6 +12,7 @@ import Login from './components/Login'
 import RoleCheck from './components/Rolechecker'
 import Signup from './components/Signup'
 import Welcome from './components/Welcome'
+import Profile from './components/Profile'
 
 import Exercises from './components/exercises/Exercises'
 
@@ -21,6 +22,7 @@ import './App.css';
 function App() {
   // user data if the a user is logged in 
   const [currentUser, setCurrentUser] = useState(null)
+  const [profile, setProfile] = useState(null)
 
   // if the user navigates away and comes back, look for a jwt
   useEffect(() => {
@@ -46,19 +48,7 @@ function App() {
     }
   }
 
-  //show profoile
-  //not working in mobile view?
-  const showProfile =()=>{
-    const profileView=document.querySelector('.profile') 
-    if (profileView.className !== 'profile popout') {
-      profileView.classList.remove("popin")
-      profileView.classList.add("popout");
-
-  } else {
-    profileView.classList.remove("popout")
-    profileView.classList.add("popin");
-  }
-  }
+  
 
   return (
     <Fragment>
@@ -67,7 +57,7 @@ function App() {
 
     <Router>
     
-        <Navbar currentUser={ currentUser } handleLogout={ handleLogout } showProfile={showProfile}/>
+        <Navbar currentUser={ currentUser } handleLogout={ handleLogout }/>
 
 
       <div className="jib">
@@ -90,11 +80,12 @@ function App() {
 
 
               <Route path="/exercises" component={Exercises} />
-
-                <Route 
-              path="/profile" 
-              render={(props) => currentUser ? <RoleCheck {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }
-            />
+              <Route  path="/profile" component={() => <Profile  currentUser={ currentUser }/>} />
+             { /*
+        <Route  path="/profile" 
+              render={(props) => currentUser ? <RoleCheck {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }/>
+          */}
+            
 
 
 

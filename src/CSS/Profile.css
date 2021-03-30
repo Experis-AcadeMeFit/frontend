@@ -2,7 +2,7 @@
 .profile {
     position: absolute;
     width: 20rem;
-    right: -20rem;
+   right: -20rem;
     z-index: 1;
     top: 12.7vh;
     height: calc(100vh - 13vh);
@@ -20,10 +20,10 @@
     transition: right 0.5s ease-out;
 }
 
-.popin{
-    right: -20rem;
-    transition: right 0.5s ease-out;
-}
+  .popin{
+      right: -20rem;
+      transition: right 0.5s ease-out;
+  }
 
 .profile input {
     font-family: "Roboto", sans-serif;
@@ -49,7 +49,7 @@ input:disabled {
     margin: 0 0 0.1rem;
     padding: 0.5rem;
 }
-  .profile button.CTA {
+  .profile .PCTA {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;

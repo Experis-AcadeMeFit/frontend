@@ -7,21 +7,22 @@ const [musclesList,setMusclesList]= useContext(MusclesListContext);
 const [musclegroup,setMusclegroup]= useContext( MusclesFigureContext);
 
 
-
+//on mouseover in Excercise List higlight muscles on svg figure corosponding to the excercise
 useEffect(() => {
     let mus=document.querySelector('#'+musclegroup)
 
     if(mus){
+        //grey out all muscles
         let svg = document.querySelectorAll("g");
         for (let i = 0; i < svg.length; i++) {
             svg[i].setAttribute("fill", "#999999");
           }
-    
+        //higlight corosponding muscles
         mus.setAttribute("fill", "#6ffacc");
     }
 }, [musclegroup])
 
-
+//click a muscles group on the svg figure and sort the excercise List
 const muscleClick=(e,mGroup)=>{
     
     let svg = document.querySelectorAll("g");
