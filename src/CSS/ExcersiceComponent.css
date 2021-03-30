@@ -8,12 +8,16 @@
     background-color: rgba(var(--darkgreyblue), 0.9);
     font-size: calc(0.5rem + (26 - 14) * ((100vw - 30rem) / (1600 - 300)));
     margin: 0 auto;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 0.1rem 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: var(--radius);
     margin-bottom: 0.2rem;;
     padding: 0.2rem;
     cursor: pointer;
     z-index: 1;
+  }
+  .excercise:hover {
+background-color: rgba(var(--lightpetrolium),0.2);
+transition: background-color 250ms linear;
   }
   .excercisehead {
     position: relative;
@@ -51,7 +55,8 @@
     color:rgba(var(--white), 0.9);
     background-color: rgba(var(--lightpetrolium),0.2);
     border-radius: var(--radius);
-    transition: max-height 1s;  
+    pointer-events: none;
+    display: none;
   }
   
   .clearfix::after {

@@ -1,5 +1,8 @@
 import {useEffect,Redirect,useState,Fragment } from 'react'
 import Dashboard from './Dashboard'
+
+
+
 import Profile from './Profile'
 import Login from './Login'
 import '../CSS/Rolechecker.css'
@@ -32,6 +35,7 @@ export default function RoleCheck(props) {
     <Fragment>
     <div className="RoleWrap">
          <Dashboard className="cal" user={user} contributer={contributer} admin={admin} currentUser={ props.currentUser }/>
+
       </div>
 
       <Profile curUser={curUser.user} />

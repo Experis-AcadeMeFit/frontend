@@ -13,6 +13,9 @@ import RoleCheck from './components/Rolechecker'
 import Signup from './components/Signup'
 import Welcome from './components/Welcome'
 
+import Exercises from './components/exercises/Exercises'
+
+
 import './App.css';
 
 function App() {
@@ -83,6 +86,10 @@ function App() {
               path="/dashboard" 
               render={(props) => currentUser ? <RoleCheck {...props} handleLogout={handleLogout} currentUser={ currentUser } /> : <Redirect to="/login" /> }
             />
+            
+
+
+              <Route path="/exercises" component={Exercises} />
 
                 <Route 
               path="/profile" 

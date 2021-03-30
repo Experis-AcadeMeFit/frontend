@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom'
+
+
+
 import '../CSS/Navbar.css'
 const Navbar = (props) => {
   
@@ -13,6 +16,12 @@ const Navbar = (props) => {
       <li>dashboard</li>
       </Link>
 
+      <Link to= "/exercises" style={{ textDecoration: 'none' }}>
+      <li>exercises</li>
+      </Link>
+
+
+      
       <Link to="/profile" style={{ textDecoration: 'none' }}>
       <li><span onClick={props.showProfile}>profile</span></li>
       </Link>
