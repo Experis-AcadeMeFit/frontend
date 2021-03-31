@@ -29,7 +29,7 @@ const Dashboard =() => {
         const days = [];
     
         let startDay = startOfWeek(currentMonth);
-    console.log(startDay)
+  
         for (let i = 0; i < 7; i++) {
             let day=format(addDays(startDay, i), dayFormat)
             let date=format(new Date(), dateFormat)

@@ -69,9 +69,20 @@ function App() {
 
             <Route path="/Signup" component={Signup} />
             <Route path="/login" component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/exercises" component={Exercises} />
-            <Route path="/profile" component={Profile} />
+
+            <Route 
+              path="/dashboard" 
+              render={(props) => user ? <Dashboard /> : <Redirect to="/login" /> }
+            />
+                  <Route 
+              path="/exercises" 
+              render={(props) => user ? <Exercises /> : <Redirect to="/login" /> }
+            />
+                  <Route 
+              path="/profile" 
+              render={(props) => user ? <Profile /> : <Redirect to="/login" /> }
+            />
+
             <Route exact path="/" component={Welcome} />
 
           </Switch>

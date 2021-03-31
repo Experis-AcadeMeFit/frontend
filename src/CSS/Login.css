@@ -36,7 +36,7 @@
     font-size: 14px;
     border-radius: var(--radius);
   }
-  .form .CTA {
+  .form .LCTA {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
@@ -51,7 +51,7 @@
     cursor: pointer;
     border-radius: var(--radius);
   }
-  .form .CTA:hover,.form .CTA:active,.form .CTA:focus {
+  .form .LCTA:hover,.form .LCTA:active,.form .LCTA:focus {
 
     background: rgb(var(--lightpetrolium));
   }

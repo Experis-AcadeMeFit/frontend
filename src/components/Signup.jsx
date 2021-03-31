@@ -121,7 +121,7 @@ const  Signup = (props) => {
           onChange={onPasswordChange}
         />
 
-        <input className="CTA"
+        <input className="LCTA"
           type='submit'
           value='SIGN UP'
         />

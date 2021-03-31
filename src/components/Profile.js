@@ -11,14 +11,8 @@ const Profile = (props) => {
     const [contributer, setContributer] = useContext( ContributerContext);
  
 
-    useEffect(() => {
-        console.log(user)
-    }, [])
 
-return(
-    <h2>hej</h2>
-)
-/*
+
     const [isProfile,setIsProfile] =useState('')
 
     //Can change--
@@ -28,6 +22,15 @@ return(
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [adress1, setAdress1] = useState('');
+    const [adress2, setAdress2] = useState('');
+    const [adress3, setAdress3] = useState('');
+    const [postalcode, setPostalcode] = useState('');
+    const [city, setCity] = useState('');
+
+    
+    
+    
     //Can change--
     //ftness attributes 
     const [heightval, setHeightval] = useState(0);
@@ -97,7 +100,7 @@ return(
   }
 
   useEffect(() => {
-    let path = (new URL(document.location)).pathname; 
+     let path = (new URL(document.location)).pathname; 
     setIsProfile(path)
     if(isProfile==="/profile"){
         showProfile()
@@ -107,10 +110,12 @@ return(
 
 
     useEffect(() => {
-        setUsername(props.curUser.username)
-        setEmail(props.curUser.email)
-        setPassword(props.curUser.password)
-    }, [props])
+      //  console.log(user.user.username)
+
+        setUsername(user.user.username)
+        setEmail(user.user.email)
+        setPassword(user.userpassword)
+    }, [user])
 
 
     const onNameChange = (e) => {
@@ -125,7 +130,28 @@ return(
         const password = e.target.value;
         setPassword(password);
     };
-
+    const onAdress1Change = (e) => {
+        const adress1 = e.target.value;
+        setAdress1(adress1);
+    };
+    const onAdress2Change = (e) => {
+        const adress2 = e.target.value;
+        setAdress2(adress2);
+    };
+    const onAdress3Change = (e) => {
+        const adress3 = e.target.value;
+        setAdress3(adress3);
+    };
+    const onPostalcodeChange = (e) => {
+        const postalcode = e.target.value;
+        setPostalcode(postalcode);
+    };
+    const onCityChange = (e) => {
+        const city = e.target.value;
+        setCity(city);
+    };
+ 
+    
     //change profile settings
     const changeSettings = (e) => {
         e.preventDefault();
@@ -169,48 +195,117 @@ return(
     }
 
     return (
+        <div className="profileWrap">
         <div className="profile">
           <Profileavatar/>
-            <form onSubmit={handleSumbit}>
 
+          <div className="profile_formWrap">
+            <form onSubmit={handleSumbit}>
+                <div className="name">
                 <input
                     id='name-input'
+                   
+               
                     type='text'
                     placeholder={"username: " + username}
                     onChange={onNameChange}
                     value={username}
                     disabled={inputDisabled}
                 />
-
+            </div>
+            <div className="email">
                 <input
                     id='email-input'
+                    
+             
                     type='email'
                     placeholder={"Email: " + email}
                     onChange={onEmailChange}
                     value={email}
                     disabled={inputDisabled}
                 />
-
+            </div>
+            <div className="password">
                 <input
                     id='password-input'
+                    
                     type='password'
                     placeholder={"password:"}
                     onChange={onPasswordChange}
                     value={password}
                     disabled={inputDisabled}
                 />
+             </div>
+             <div  className="adress1">
+                <input
+                    id='adress1'
+                   
+                    type='txt'
+                    placeholder={"adress:"}
+                    onChange={onAdress1Change}
+                    value={adress1}
+                    disabled={inputDisabled}
+                />
+                </div>
+                <div className="adress2">
+                <input
+                    id='adress2'
+                    
+                    type='txt'
+                    placeholder={"adress:"}
+                    onChange={onAdress2Change}
+                    value={adress2}
+                    disabled={inputDisabled}
+                />
+                </div>
+                <div className="adress3">
+                <input
+                    id='adress3'
+                    
+                    type='txt'
+                    placeholder={"adress:"}
+                    onChange={onAdress3Change}
+                    value={adress3}
+                    disabled={inputDisabled}
+                />
+                </div>
+                <div className="postalcode">
+                <input
+                    id='postalcode'
+                    
+                    type='txt'
+                    placeholder={"postalcode:"}
+                    onChange={onPostalcodeChange}
+                    value={postalcode}
+                    disabled={inputDisabled}
+                />
+                </div>
+                <div className="city">
+                <input
+                    id='city'
+                    
+                    type='txt'
+                    placeholder={"city:"}
+                    onChange={onCityChange}
+                    value={city}
+                    disabled={inputDisabled}
+                />
+                </div>    
 
+                <div className="submit">
                 <button className="PCTA"
                     onClick={changeSettings}
                 >change settings</button>
+                </div>
             </form>
-
+            </div>
             <RangeSlider {...sliderHeight} className="slider" />
             <RangeSlider {...sliderWeight} className="slider" />
             <div className="bmi" dangerouslySetInnerHTML={whatTheBMI(BMI)} />
         </div>
+        </div>
     );
-*/
+
 }
 
 export default Profile

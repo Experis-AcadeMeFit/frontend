@@ -109,7 +109,7 @@ const Login=() => {
           required
         />
 
-        <input className="CTA"
+        <input className="LCTA"
           type='submit'
           value='login'
         />
