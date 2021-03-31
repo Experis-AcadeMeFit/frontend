@@ -1,11 +1,11 @@
-import { Fragment, useState, useEffect, useContext } from 'react'
+import { Fragment, useEffect, useContext } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import jwt_decode from "jwt-decode";
 
 
 import GlobalStyle from "./theme/globalStyles";
 
-import { UserContext, ContributerContext, AdminContext } from './components/exercises/MuscleContext';
+import { UserContext, ContributerContext } from './components/exercises/MuscleContext';
 
 
 import AppHeader from './containers/AppHeader/AppHeader'
@@ -24,7 +24,7 @@ import './App.css';
 
 function App() {
   
-  if (process.env.NODE_ENV !== 'production') console.log(jwt_decode)
+ // if (process.env.NODE_ENV !== 'production') console.log(jwt_decode)
   // user data if the a user is logged in 
   const [user, setUser] = useContext(UserContext);
   const [contributer, setContributer] = useContext(ContributerContext);
@@ -45,7 +45,7 @@ function App() {
       // double check that current user is null if the jwt is not found 
       setUser(null)
     }
-  }, [])
+  }, [setUser,setContributer])
 
 
   // deletes jwt from local storage to log user out
@@ -74,15 +74,15 @@ function App() {
 
             <Route 
               path="/dashboard" 
-              render={(props) => user ? <Dashboard /> : <Redirect to="/login" /> }
+              render={(props) => user ? <Dashboard contributer={contributer}/> : <Redirect to="/login" /> }
             />
                   <Route 
               path="/exercises" 
-              render={(props) => user ? <Exercises /> : <Redirect to="/login" /> }
+              render={(props) => user ? <Exercises contributer={contributer}/> : <Redirect to="/login" /> }
             />
                   <Route 
               path="/profile" 
-              render={(props) => user ? <Profile /> : <Redirect to="/login" /> }
+              render={(props) => user ? <Profile contributer={contributer}/> : <Redirect to="/login" /> }
             />
 
             <Route exact path="/" component={Welcome} />
