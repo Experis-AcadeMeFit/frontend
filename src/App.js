@@ -23,7 +23,8 @@ import Exercises from './components/exercises/Exercises'
 import './App.css';
 
 function App() {
-
+  
+  if (process.env.NODE_ENV !== 'production') console.log(jwt_decode)
   // user data if the a user is logged in 
   const [user, setUser] = useContext(UserContext);
   const [contributer, setContributer] = useContext(ContributerContext);
