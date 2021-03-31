@@ -1,16 +1,24 @@
 
-import { useState, useEffect,useRef, useContext } from 'react'
+import { useState, useContext } from 'react'
 import {  MusclesFigureContext } from './MuscleContext';
 
 import '../../CSS/ExcersiceComponent.css'
 
 const ExcerciseComponent = props => {
-
+    
+    // eslint-disable-next-line 
     const [musclegroup, setMusclegroup] = useContext( MusclesFigureContext);
-
+    
+    // eslint-disable-next-line 
     const [id, setId] = useState(props.exercises.id)
+    
+    // eslint-disable-next-line     
     const [name, setname] = useState(props.exercises.name)
+    
+    // eslint-disable-next-line 
     const [description, setDescription] = useState(props.exercises.description)
+    
+    // eslint-disable-next-line 
     const [muscles, setMuscles] = useState(props.exercises.musclegroup[0])
     const [showDetail, setShowDetail] = useState(false);
 

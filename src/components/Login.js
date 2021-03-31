@@ -10,7 +10,9 @@ import {UserContext,ContributerContext ,AdminContext } from './exercises/MuscleC
 const Login=() => {
 
   const [user, setUser] = useContext( UserContext);
+   // eslint-disable-next-line 
   const [contributer, setContributer] = useContext( ContributerContext);
+  // eslint-disable-next-line 
   const [admin, setAdmin] = useContext( AdminContext);
 
   const [email, setEmail] = useState('')

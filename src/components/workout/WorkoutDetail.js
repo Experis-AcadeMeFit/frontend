@@ -4,7 +4,7 @@ import '../../CSS/WorkoutDetail.css'
 const Workoutdetail=()=>{
 
 
-
+ // eslint-disable-next-line 
     const [inputDisabled, setInputDisabled] = useState(true)
     const [orderNumber, setOrder] = useState(1)
     const [exerciseName,setExerciseName]=useState('PUSH UP')

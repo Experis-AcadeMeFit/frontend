@@ -1,11 +1,11 @@
 
 import { useContext } from 'react'
-import { UserContext, ContributerContext } from '../exercises/MuscleContext';
+import { ContributerContext } from '../exercises/MuscleContext';
 
 import '../../CSS/WorkoutComponent.css'
 import WorkoutDetail from './WorkoutDetail'
 const WorkoutComponent = () => {
-
+ // eslint-disable-next-line 
         const [contributer, setContributer] = useContext(ContributerContext);
      
         return (

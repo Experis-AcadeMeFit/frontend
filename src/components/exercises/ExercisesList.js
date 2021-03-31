@@ -7,6 +7,7 @@ const ExcrecisesList = () => {
 
 
     const [exerciseslist, setExerciseslist] = useState([]);
+    // eslint-disable-next-line 
     const [musclesList, setMusclesList] = useContext(MusclesListContext);
 
     const fetchExercises = async () => {

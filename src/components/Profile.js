@@ -6,8 +6,9 @@ import Profileavatar from './ProfileAvatar'
 import RangeSlider from './Slider';
 import '../CSS/Profile.css'
 const Profile = (props) => {
-
+ // eslint-disable-next-line 
     const [user, setUser] = useContext( UserContext);
+     // eslint-disable-next-line 
     const [contributer, setContributer] = useContext( ContributerContext);
  
 
@@ -98,7 +99,7 @@ const Profile = (props) => {
   }
   
   }
-
+ // eslint-disable-next-line 
   useEffect(() => {
      let path = (new URL(document.location)).pathname; 
     setIsProfile(path)

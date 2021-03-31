@@ -1,9 +1,10 @@
-import { useState,useEffect,useContext } from "react"
+import {useEffect,useContext } from "react"
 import {  MusclesFigureContext,MusclesListContext } from './exercises/MuscleContext';
 import '../CSS/MuscleFigure.css'
 const MuscleFigure=()=>{
-
+ // eslint-disable-next-line 
 const [musclesList,setMusclesList]= useContext(MusclesListContext);
+ // eslint-disable-next-line 
 const [musclegroup,setMusclegroup]= useContext( MusclesFigureContext);
 
 
