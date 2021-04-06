@@ -41,12 +41,12 @@ const Login=() => {
 
       //login with API and get jwt
       const response = await axios.post(API_URL+API_AUTHLOGIN, requestBody)
-      
+  
       // destructure response
-      const  token  = response.data.accessToken
+      const  token  = response.data.access_token
 
       // Save token to localStorage
-      localStorage.setItem('jwtToken', token);
+     // localStorage.setItem('jwtToken', token);
 
       // get user data from the token
       const decoded = jwt_decode(token)

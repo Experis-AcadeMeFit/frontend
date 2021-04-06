@@ -5,7 +5,7 @@ import {  MusclesFigureContext } from './MuscleContext';
 import '../../CSS/ExcersiceComponent.css'
 
 const ExcerciseComponent = props => {
-    
+    console.log(props)
     // eslint-disable-next-line 
     const [musclegroup, setMusclegroup] = useContext( MusclesFigureContext);
     
@@ -19,7 +19,7 @@ const ExcerciseComponent = props => {
     const [description, setDescription] = useState(props.exercises.description)
     
     // eslint-disable-next-line 
-    const [muscles, setMuscles] = useState(props.exercises.musclegroup[0])
+    const [muscles, setMuscles] = useState(props.exercises.targetMuscleGroup)
     const [showDetail, setShowDetail] = useState(false);
 
 

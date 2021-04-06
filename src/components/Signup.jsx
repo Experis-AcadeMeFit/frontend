@@ -1,13 +1,19 @@
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import {API_URL, API_AUTHREGISTRE} from '../utills/APICalls'
+import {API_URL, API_AUTHREGISTRE,API_AUTHLOGIN} from '../utills/APICalls'
+import {UserContext,ContributerContext ,AdminContext } from './exercises/MuscleContext';
+
 import '../CSS/Login.css'
 
 const  Signup = (props) => {
   const history = useHistory();
-
+  const [user, setUser] = useContext( UserContext);
+  // eslint-disable-next-line 
+  const [contributer, setContributer] = useContext( ContributerContext);
+ // eslint-disable-next-line 
+ const [admin, setAdmin] = useContext( AdminContext);
  
   // for controlled form
   const [fname, setfName] = useState('')
@@ -38,6 +44,32 @@ const  Signup = (props) => {
     setPassword(password);
   };
 
+  const  signupRedirect = async e => {
+
+    const requestBody = {
+      email: email,
+      password: password
+    }
+
+    //login with API and get jwt
+    const response = await axios.post(API_URL+API_AUTHLOGIN, requestBody)
+
+    // destructure response
+    const  token  = response.data.access_token
+
+    // Save token to localStorage
+    localStorage.setItem('jwtToken', token);
+
+    // get user data from the token
+    const decoded = jwt_decode(token)
+console.log(decoded.roles)
+    
+     //setUser(decoded)
+     //setContributer(decoded.user.roles.includes("ROLE_CONTRIBUTOR"));
+     //setAdmin(decoded.user.roles.includes("ROLE_ADMIN")); 
+ 
+       //history.replace("/dashboard");
+   }
 
   const handleSumbit = async e => {
     try { 
@@ -50,17 +82,9 @@ const  Signup = (props) => {
         password: password,
       }
 
-      const response = await axios.post(API_URL+ API_AUTHREGISTRE, requestBody)
- 
-      // destructure response
-      const  token  = response.data.accessToken
-   
-      // Save token to localStorage
-      localStorage.setItem('jwtToken', token);
+      const response = await axios.post(API_URL+API_AUTHREGISTRE, requestBody)
 
-      // get user data from the token
-      const decoded = jwt_decode(token)
-      decodetredirect(decoded)
+      signupRedirect(response)
       // set the current user in the top app state
     } catch(error) {
       console.log(error)
@@ -89,13 +113,7 @@ const  Signup = (props) => {
   
   }
 
-  function decodetredirect(decoded){
-   //someone signed up and is now taken to the dashboard
-    if(decoded!==null){
-      history.replace("/dashboard");
-    }  
-
-  }
+  
 
 
   return (

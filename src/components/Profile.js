@@ -113,8 +113,8 @@ const Profile = (props) => {
     useEffect(() => {
       //  console.log(user.user.username)
 
-        setUsername(user.user.username)
-        setEmail(user.user.email)
+        setUsername(user.username)
+        setEmail(user.email)
         setPassword(user.userpassword)
     }, [user])
 

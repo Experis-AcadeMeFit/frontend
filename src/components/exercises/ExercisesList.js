@@ -14,7 +14,8 @@ const ExcrecisesList = () => {
         try {
 
             const exercises = await getExercises();
-            setExerciseslist(exercises.message.exercises);
+          // console.log(exercises)
+            setExerciseslist(exercises);
         } catch (error) {
             console.error(error);
         }

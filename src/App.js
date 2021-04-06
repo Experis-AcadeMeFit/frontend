@@ -39,7 +39,7 @@ function App() {
       // set the current usr if jwt is found
       const decoded = jwt_decode(token)
       setUser(decoded)
-      setContributer(decoded.user.roles.includes("ROLE_CONTRIBUTOR"));
+      setContributer(decoded.roles.includes("ROLE_CONTRIBUTOR"));
 
     } else {
       // double check that current user is null if the jwt is not found 
