@@ -3,7 +3,7 @@ import {getExercisesById} from '../../utills/CRUD'
 import '../../CSS/WorkoutDetail.css'
 
 const WorkoutDetailComponent=prop =>{
-    let details=prop.detail
+    let details=prop.thedetail
     let order=prop.order+1;
 
 

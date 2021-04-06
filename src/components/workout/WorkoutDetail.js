@@ -1,12 +1,22 @@
-
+import {useState,useEffect} from 'react'
 import WorkoutDetailComponent from './WorkoutDetailComponent'
 
 const Workoutdetail=props=>{
-let detail=props.detail;
+
+
+const [detail,setDetail]=useState();
+
+useEffect(() => {
+  setDetail(props.detail);
+
+}, [props]);
+
+
 console.log(detail)
     return(
       <ul className="exlist">
-   {detail.map((details, index) => <WorkoutDetailComponent key={index} detail={details} order={index}/>)}
+        
+   {detail && detail.map((details, index) => <WorkoutDetailComponent key={index} thedetail={details} order={index}/>)}  
     </ul>
     )
 }

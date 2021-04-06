@@ -44,10 +44,11 @@
     color: rgba(var(--white),0.9);
     left: 0;
     right: 0;
-
-
-  
    }
+.exercise input{
+  width: 30%;
+}
+
    .excerciseDetail{
     padding: 0.5rem;
     margin:0.5rem;

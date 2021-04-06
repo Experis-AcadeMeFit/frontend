@@ -10,9 +10,9 @@ const Workout = () => {
 
     const fetchWorkouts = async () => {
         try {
-            console.log('wuuuuu')
+         
             const workouts = await getWorkouts();
-       console.log(workouts)
+
             setWorkoutList(workouts);
         } catch (error) {
             console.error(error);
