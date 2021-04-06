@@ -2,17 +2,20 @@
 import { useContext } from 'react'
 import { ContributerContext } from '../exercises/MuscleContext';
 
+
 import '../../CSS/WorkoutComponent.css'
 import WorkoutDetail from './WorkoutDetail'
-const WorkoutComponent = () => {
+const WorkoutComponent = props => {
+       let workout=props.exercises;
+
  // eslint-disable-next-line 
         const [contributer, setContributer] = useContext(ContributerContext);
-     
+       
         return (
                 <div className="workout">
 
                         <div className="workouthead">
-                                <p>Butt workout</p>
+                                <p>{workout.name}</p>
                                 <p>{contributer}</p>
                         </div>
 
@@ -30,7 +33,7 @@ const WorkoutComponent = () => {
                         <hr className="clearfix"></hr>
 
                         <div className="divider">
-                                <WorkoutDetail className="workoutDetail" />
+                                <WorkoutDetail className="workoutDetail" detail={workout.exerciseSets}/>
 
                         </div>
                         <span className="tri">▲</span>

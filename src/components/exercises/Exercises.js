@@ -8,10 +8,6 @@ import MuscleFigure from '../MuscleFigure'
 
 
 const Exercises =()=>{
-//const [theMucle,setTheMucle]=useState()
-
-
-
 
 return(
 

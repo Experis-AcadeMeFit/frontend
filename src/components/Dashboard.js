@@ -6,8 +6,7 @@ import {addDays} from "date-fns"
 
 
 import ProgramComponent from './programs/ProgramComponent'
-import WorkoutComponent from './workout/WorkoutComponent'
-
+import Workout from './workout/Workout'
 
 
 import '../CSS/Dashboard.css'
@@ -46,7 +45,7 @@ const Dashboard =() => {
             <ProgramComponent/>
             </div>
                 <div className="column">
-            <WorkoutComponent/>
+            <Workout/>
             </div>
             <div className="column"></div>
        </div>

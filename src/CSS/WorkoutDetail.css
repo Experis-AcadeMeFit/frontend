@@ -48,7 +48,15 @@
 
   
    }
-
+   .excerciseDetail{
+    padding: 0.5rem;
+    margin:0.5rem;
+    color:rgba(var(--white), 0.9);
+    background-color: rgba(var(--lightpetrolium),0.2);
+    border-radius: var(--radius);
+    pointer-events: none;
+    display: none;
+  }
    .clearfix::after {
     content: "";
     clear: both;

@@ -9,6 +9,7 @@ import '../CSS/Login.css'
 
 const  Signup = (props) => {
   const history = useHistory();
+    // eslint-disable-next-line 
   const [user, setUser] = useContext( UserContext);
   // eslint-disable-next-line 
   const [contributer, setContributer] = useContext( ContributerContext);
@@ -62,13 +63,13 @@ const  Signup = (props) => {
 
     // get user data from the token
     const decoded = jwt_decode(token)
-console.log(decoded.roles)
+
     
-     //setUser(decoded)
-     //setContributer(decoded.user.roles.includes("ROLE_CONTRIBUTOR"));
-     //setAdmin(decoded.user.roles.includes("ROLE_ADMIN")); 
+     setUser(decoded)
+     setContributer(decoded.roles.includes("ROLE_CONTRIBUTOR"));
+     setAdmin(decoded.roles.includes("ROLE_ADMIN")); 
  
-       //history.replace("/dashboard");
+      history.replace("/dashboard");
    }
 
   const handleSumbit = async e => {

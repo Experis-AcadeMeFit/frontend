@@ -5,7 +5,7 @@ import {  MusclesFigureContext } from './MuscleContext';
 import '../../CSS/ExcersiceComponent.css'
 
 const ExcerciseComponent = props => {
-    console.log(props)
+
     // eslint-disable-next-line 
     const [musclegroup, setMusclegroup] = useContext( MusclesFigureContext);
     

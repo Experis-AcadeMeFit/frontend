@@ -18,7 +18,7 @@ body {
   scroll-behavior: smooth;
   line-height: 1.5;
   background-color:var( --darkblue);
-
+  scrollbar-width: thin;
   
 }
 

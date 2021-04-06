@@ -18,7 +18,7 @@ import Welcome from './components/Welcome'
 import Profile from './components/Profile'
 import Dashboard from './components/Dashboard'
 import Exercises from './components/exercises/Exercises'
-
+import Workout from './components/workout/Workout'
 
 import './App.css';
 
@@ -79,6 +79,11 @@ function App() {
                   <Route 
               path="/exercises" 
               render={(props) => user ? <Exercises contributer={contributer}/> : <Redirect to="/login" /> }
+            />
+
+            <Route 
+              path="/workouts" 
+              render={(props) => user ? <Workout contributer={contributer}/> : <Redirect to="/login" /> }
             />
                   <Route 
               path="/profile" 

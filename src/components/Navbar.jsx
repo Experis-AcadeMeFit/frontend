@@ -20,6 +20,10 @@ const Navbar = (props) => {
       <li>exercises</li>
       </Link>
 
+      <Link to= "/workouts" style={{ textDecoration: 'none' }}>
+      <li>workouts</li>
+      </Link>
+
       
       <Link to="/profile" style={{ textDecoration: 'none' }}>
       <li><span onClick={props.showProfile}>profile</span></li>
@@ -51,9 +55,7 @@ const Navbar = (props) => {
       <ul  className="menu">
       {props.currentUser ? loggedIn : loggedOut}
 
-      <Link to="/" style={{ textDecoration: 'none' }}>
-        <li>home&#8962;</li>
-      </Link>
+    
       </ul>
     </nav>
   )

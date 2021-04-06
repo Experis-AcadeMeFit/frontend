@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { getExercises } from '../../utills/ExercisesCRUD'
+import { getExercises } from '../../utills/CRUD'
 import ExercisesComponent from './ExercisesComponent'
 import { MusclesListContext } from './MuscleContext';
 
@@ -62,6 +62,7 @@ const ExcrecisesList = () => {
 
         <div className="">
             <ul className="exlist">
+                <button>Add new Exercise</button>
                 {exerciseslist.map((exercises, index) => <ExercisesComponent key={index} exercises={exercises} />)}
             </ul>
         </div>
