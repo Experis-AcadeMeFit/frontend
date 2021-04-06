@@ -58,7 +58,36 @@ transition: background-color 250ms linear;
     pointer-events: none;
     display: none;
   }
+  .excercise input {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    outline: 0;
+    background:rgba(--lightreyblue,0);
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    border: 0;
+    box-sizing: border-box;
+    color: rgba(var(--white),1);
+    border-radius: var(--radius);
+  }
+
+  .inputEnabled{
+    position: relative;
+    z-index: 10;
+    background: rgba(var(--lightreyblue),1);
+    margin: 0 0 0rem;
+    padding: 0.2rem;
+    width: 100%;
+    color: rgba(var(--darkgreyblue),1);
+    pointer-events: all;
+}
   
+input:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    margin: 0 0 0.1rem;
+    padding: 0.5rem;
+}
   .clearfix::after {
     content: "";
     clear: both;

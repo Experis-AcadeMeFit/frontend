@@ -8,7 +8,6 @@ const [detail,setDetail]=useState();
 
 useEffect(() => {
   setDetail(props.detail);
-
 }, [props]);
 
 

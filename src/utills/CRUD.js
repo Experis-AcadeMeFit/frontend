@@ -10,13 +10,22 @@ export const getExercises = () => {
             })
     }
     
-    export const getExercisesById = (idNum) => {
+export const getExercisesById = (idNum) => {
         return axios.get(API_URL+API_EXERCISES+idNum)
             .then(response => response.data)
             .catch((error) => {
                 console.log(error);
             })
     }
+
+export const updateExercises = (idNum,req) => {
+    console.log(API_URL+API_EXERCISES+idNum,req)
+        return axios.patch(API_URL+API_EXERCISES+idNum,req)
+            .then(response => response.data)
+            .catch((error) => {
+                console.log(error);
+            })
+        }
 
 
 export const getWorkouts = () => {

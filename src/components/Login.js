@@ -46,7 +46,7 @@ const Login=() => {
       const  token  = response.data.access_token
 
       // Save token to localStorage
-     // localStorage.setItem('jwtToken', token);
+      localStorage.setItem('jwtToken', token);
 
       // get user data from the token
       const decoded = jwt_decode(token)
@@ -56,8 +56,8 @@ const Login=() => {
 
       
        setUser(decoded)
-       setContributer(decoded.user.roles.includes("ROLE_CONTRIBUTOR"));
-       setAdmin(decoded.user.roles.includes("ROLE_ADMIN")); 
+       setContributer(decoded.roles.includes("ROLE_CONTRIBUTOR"));
+       setAdmin(decoded.roles.includes("ROLE_ADMIN")); 
       
     } catch(error) {
       console.log(error)

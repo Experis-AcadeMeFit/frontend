@@ -90,12 +90,12 @@ const Profile = (props) => {
     const profileView=document.querySelector('.profile') 
 
     if (profileView.className !== 'profile popout') {
-      profileView.classList.remove("popin")
-      profileView.classList.add("popout");
+      //profileView.classList.remove("popin")
+      //profileView.classList.add("popout");
 
   } else {
-    profileView.classList.remove("popout")
-    profileView.classList.add("popin");
+    //profileView.classList.remove("popout")
+    //profileView.classList.add("popin");
   }
   
   }
@@ -284,7 +284,6 @@ const Profile = (props) => {
                 <div className="city">
                 <input
                     id='city'
-                    
                     type='txt'
                     placeholder={"city:"}
                     onChange={onCityChange}
