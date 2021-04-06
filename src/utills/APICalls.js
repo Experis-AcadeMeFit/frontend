@@ -1,6 +1,6 @@
 
 
-export const API_URL='http://localhost:8080/';
-export const API_AUTHLOGIN ='api/auth/login'
-export const API_AUTHREGISTRE='api/auth/register'
-export const API_EXERCISES="api/exercises/all"
+export const API_URL='https://expwefitkey.herokuapp.com/';
+export const API_AUTHLOGIN ='api/v1/login'
+export const API_AUTHREGISTRE='api/v1/users'
+export const API_EXERCISES="api/v1/exercises"
