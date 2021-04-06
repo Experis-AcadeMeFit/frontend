@@ -10,7 +10,8 @@ const  Signup = (props) => {
 
  
   // for controlled form
-  const [name, setName] = useState('')
+  const [fname, setfName] = useState('')
+  const [lname, setlName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
@@ -18,10 +19,16 @@ const  Signup = (props) => {
  // const [message, setMessage] = useState('')
 
 
-  const onNameChange = (e) => {
-    const name = e.target.value;
-    setName(name);
+  const onFnameChange = (e) => {
+    const fname = e.target.value;
+    setfName(fname);
   };
+  
+  const onLnameChange = (e) => {
+    const lname = e.target.value;
+    setlName(lname);
+  };
+
   const onEmailChange = (e) => {
     const email = e.target.value;
     setEmail(email);
@@ -37,8 +44,9 @@ const  Signup = (props) => {
       e.preventDefault()
       // post to backend with form submission
       const requestBody = {
-        username: name,
         email: email,
+        firstname:fname,
+        lastname: lname,
         password: password,
       }
 
@@ -99,11 +107,18 @@ const  Signup = (props) => {
       <form onSubmit={handleSumbit}>
 
         <input
-          id='name-input'
+          id='fname'
           type='text'
-          placeholder='your name...'
-          onChange={onNameChange}
-          value={name}
+          placeholder='your first name...'
+          onChange={onFnameChange}
+          value={fname}
+        />
+           <input
+          id='lname'
+          type='text'
+          placeholder='your last name...'
+          onChange={onLnameChange}
+          value={lname}
         />
 
         <input
