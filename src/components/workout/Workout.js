@@ -21,7 +21,7 @@ const Workout = () => {
             console.error(error);
         }
     }
-
+    // eslint-disable-next-line 
     useEffect(() => { fetchWorkouts(); }, []);
    
     //If url path is workouts restrict width of component

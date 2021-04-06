@@ -27,9 +27,17 @@ export const updateExercises = (idNum, req) => {
         })
 }
 
+export const createExercises = (req) => {
+    return axios.post(API_URL + API_EXERCISES, req)
+        .then(response => response.status)
+        .catch((error) => {
+            console.log(error);
+        })
+}
+
 export const deleteExercises = (idNum) => {
     return axios.delete(API_URL+API_EXERCISES+idNum)
-        .then(response => response.data)
+        .then(response => response)
         .catch((error) => {
             console.log(error);
         })

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { getExercises } from '../../utills/CRUD'
+import { getExercises, createExercises } from '../../utills/CRUD'
 import ExercisesComponent from './ExercisesComponent'
 import { MusclesListContext } from './MuscleContext';
 
@@ -9,19 +9,36 @@ const ExcrecisesList = () => {
     const [exerciseslist, setExerciseslist] = useState([]);
     // eslint-disable-next-line 
     const [musclesList, setMusclesList] = useContext(MusclesListContext);
- 
 
+    const [refresh, setRefresh] = useState(1);
+    const [count, setCount] = useState(1);
+    useEffect(() => {
+        if (refresh === 0) {
+            setRefresh(1);
+        }
+    }, [refresh])
+    useEffect(() => {
+        setRefresh(0);
+    }, [count]);
+   // eslint-disable-next-line 
     const fetchExercises = async () => {
+        console.log("Fetchingh")
         try {
 
-            const exercises = await getExercises();
-          // console.log(exercises)
-            setExerciseslist(exercises);
+            let exercises = await getExercises();
+
+            if (exercises) {
+
+                setExerciseslist(exercises)
+                setCount(count + 1)
+            }
+
+
         } catch (error) {
             console.error(error);
         }
     }
-
+    // eslint-disable-next-line 
     useEffect(() => { fetchExercises(); }, []);
 
     //a muscles group have been clicked in the SVG figure now sort the excercise List
@@ -40,7 +57,7 @@ const ExcrecisesList = () => {
                 return 1;
             if (an === bn)
                 return -1;
-                return 0;
+            return 0;
         });
 
 
@@ -58,14 +75,37 @@ const ExcrecisesList = () => {
         sortExcerciseList(musclesList);
     }, [musclesList]);
 
+    const addExercise = async () => {
+
+        try {
+            let req = {
+                name: "A Exercises name",
+                description: "A description",
+                targetMuscleGroup: "ABC target muscle group",
+                image: null,
+                videoUrl: null
+            }
+            let res = await createExercises(req)
+
+            if (res === 201) {
+                fetchExercises()
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+
+
+    }
+
 
     return (
 
         <div className="">
-            <ul className="exlist">
-                <button>Add new Exercise</button>
+            <button onClick={addExercise}>Add new Exercise</button>
+            {refresh ? <ul className="exlist">
                 {exerciseslist.map((exercises, index) => <ExercisesComponent key={index} exercises={exercises} />)}
-            </ul>
+            </ul> : null}
         </div>
     )
 

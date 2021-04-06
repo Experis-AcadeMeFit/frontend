@@ -124,17 +124,17 @@ const ExcerciseComponent = props => {
                 <h4>{exName}</h4>
              
                 <input
-                    id='exdescription'
+                    className='exdescription'
                     type='text'
-                    placeholder={'wuub'}
+                    placeholder={id+description}
                     onChange={onDescriptionChange}
                     value={description}
                     disabled={inputDisabled}
                 />
                     <input
-                    id='exmuscles'
+                    className='exmuscles'
                     type='text'
-                    placeholder={'wuub'}
+                    placeholder={id+muscles}
                     onChange={onMusclesChange}
                     value={muscles}
                     disabled={inputDisabled}

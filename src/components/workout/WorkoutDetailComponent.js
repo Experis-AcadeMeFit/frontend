@@ -16,7 +16,8 @@ const WorkoutDetailComponent=prop =>{
             console.error(error);
         }
     }
-
+    
+    // eslint-disable-next-line 
     useEffect(() => { fetchExercises(); }, []);
 
 
