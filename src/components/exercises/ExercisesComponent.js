@@ -1,7 +1,7 @@
 
 import { useState, useContext } from 'react'
 import {  MusclesFigureContext,ContributerContext } from './MuscleContext';
-import {updateExercises} from '../../utills/CRUD'
+import {updateExercises,deleteExercises} from '../../utills/CRUD'
 import '../../CSS/ExcersiceComponent.css'
 
 const ExcerciseComponent = props => {
@@ -90,15 +90,18 @@ const ExcerciseComponent = props => {
         }
 
     }
-    //updateExercises
-    /**    "name": "Lying leg curls",
-    "description": "Never skip leg day",
-    "targetMuscleGroup": "Hamstring",
-    "image": null,
-    "videoUrl": null */
+
+    const deleteEX=()=>{
+        deleteExercises(id)
+        let deleteme = 
+        document.getElementById(id);
+        deleteme.parentNode.removeChild(deleteme);
+      
+    }
+
 
     return (
-        <div className="excercise" onClick={toggle} data-muscl={muscles} onMouseEnter={(e) => updateMusclegroup(e)} onMouseLeave={(e) => updateMusclegroup(e)}>
+        <div className="excercise" id={id} onClick={toggle} data-muscl={muscles} onMouseEnter={(e) => updateMusclegroup(e)} onMouseLeave={(e) => updateMusclegroup(e)}>
             <div className="excercisehead">
             <input
                     className='exname'
@@ -112,7 +115,8 @@ const ExcerciseComponent = props => {
             </div>
 
             <div className="addtoWorkout clearfix">
-     {contributer && <button className="exCTA editCTA" onClick={changeSettings}>Edit Workout</button>}
+     {contributer && <button className="exCTA editCTA" onClick={changeSettings}>Edit exercise</button>}
+
                 <button className="exCTA" onClick={addToworkout}>Add to Workout</button>
             </div>
            
@@ -136,7 +140,7 @@ const ExcerciseComponent = props => {
                     disabled={inputDisabled}
                 />
             </div>
-
+            {contributer && <button className="exCTA exDelete" onClick={deleteEX}>Delete exercise</button>}
         </div>
     )
 }

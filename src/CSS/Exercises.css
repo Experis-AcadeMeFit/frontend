@@ -54,6 +54,10 @@
     white-space: nowrap;
     height: 1.7rem;
 }
+.exDelete{
+  margin-right: 0.4rem;
+  background: rgb(var(--fail));
+}
 .exCTA:hover,
 .exCTA:active,
 .exCTA:focus {

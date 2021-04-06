@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle
  --petrolium:40, 115, 149;
  --lightpetrolium:0, 183, 195;
  --turquoise:111, 250, 204;
- --fail:#E46F6F;
+ --fail:228, 111, 111;
  --radius:0.3rem
 }
 /* Box sizing rules */
