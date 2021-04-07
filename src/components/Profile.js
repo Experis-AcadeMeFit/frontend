@@ -37,7 +37,7 @@ const Profile = (props) => {
     const [heightval, setHeightval] = useState(0);
     const [weightval, setWeightval] = useState(0);
     const [BMI, setBMI] = useState(0);
-
+/*
     const sliderHeightChanged = useCallback(val => {
         setHeightval(val);
     }, []);
@@ -79,7 +79,7 @@ const Profile = (props) => {
     );
 
 
-
+*/
 
 
     
@@ -199,8 +199,75 @@ const Profile = (props) => {
         <div className="profileWrap">
         <div className="profile">
           <Profileavatar/>
-
           <div className="profile_formWrap">
+          <form class="cssgridform">
+    
+    <div className="name">
+     
+      <input type="text" name="Name"
+          value={username}
+          disabled={inputDisabled}/>
+    </div>
+    
+    <div className="email">
+      
+      <input type="email" name="Email"
+          value={email}
+          disabled={inputDisabled}/>
+    </div>
+    
+    <div className="password">
+      
+      <input type="password" name="password"
+        value={password}
+          disabled={inputDisabled}/>
+    </div>
+    
+    
+    
+    
+    
+    <div className="addresses">
+       <div class="Address1">
+       
+        <input type="dddress" name="Address1"
+          disabled={inputDisabled}/>
+      </div>
+
+      <div className="Address2">
+     
+        <input type="dddress" name="Address2"
+          disabled={inputDisabled}/>
+      </div>
+
+      <div className="Address3">
+      
+        <input type="dddress" name="Address3"
+          disabled={inputDisabled}/>
+      </div>
+
+        <div className="postal">
+      
+        <input type="dddress" name="postal"
+          disabled={inputDisabled}/>
+      </div>
+
+       <div className="city">
+       
+        <input type="dddress" name="postal"
+          disabled={inputDisabled}/>
+      </div>
+    </div>
+    
+    
+    
+    <button className="PCTA">Submit</button>
+
+  </form>
+          </div>
+ {/*
+          <div className="profile_formWrap">
+             
             <form onSubmit={handleSumbit}>
                 <div className="name">
                 <input
@@ -299,9 +366,11 @@ const Profile = (props) => {
                 </div>
             </form>
             </div>
+            {/*
             <RangeSlider {...sliderHeight} className="slider" />
-            <RangeSlider {...sliderWeight} className="slider" />
+            <RangeSlider {...sliderWeight} className="slider" /> 
             <div className="bmi" dangerouslySetInnerHTML={whatTheBMI(BMI)} />
+        */}
         </div>
         </div>
     );
