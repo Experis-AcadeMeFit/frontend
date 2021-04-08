@@ -9,8 +9,9 @@ const WorkoutDetailComponent=prop =>{
 
     const fetchExercises = async () => {
         try {
-
-            const exercise = await getExercisesById(details.id);
+            let token =  await localStorage.getItem('jwtToken');
+            const exercise = await getExercisesById(details.id,token);
+           
             setExerciseName(exercise.name);
         } catch (error) {
             console.error(error);

@@ -20,13 +20,14 @@
 }
 
 .progress {
-    width: 75%;
+    width: 80%;
     margin: 0 auto;
     border-bottom: 0.1rem solid rgba(var( --lightpetrolium),1);
+   
 }
 
 .progressbar {
-    width: 50%;
+   width: -22%;
     padding: 0.2rem;
     background-color:rgba(var( --turquoise),1);
 }

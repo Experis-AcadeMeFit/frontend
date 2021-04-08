@@ -1,14 +1,15 @@
 import { useState, useEffect, useContext } from 'react'
 import { getExercises, createExercises } from '../../utills/CRUD'
 import ExercisesComponent from './ExercisesComponent'
-import { MusclesListContext } from './MuscleContext';
+import { ContributerContext,MusclesListContext } from './MuscleContext';
+
 
 const ExcrecisesList = () => {
-
+    const [contributer] = useContext(ContributerContext);
 
     const [exerciseslist, setExerciseslist] = useState([]);
     // eslint-disable-next-line 
-    const [musclesList, setMusclesList] = useContext(MusclesListContext);
+    const [musclesList] = useContext(MusclesListContext);
 
     const [refresh, setRefresh] = useState(1);
     const [count, setCount] = useState(1);
@@ -20,12 +21,14 @@ const ExcrecisesList = () => {
     useEffect(() => {
         setRefresh(0);
     }, [count]);
+
+
    // eslint-disable-next-line 
     const fetchExercises = async () => {
         console.log("Fetchingh")
         try {
-
-            let exercises = await getExercises();
+            let token =  await localStorage.getItem('jwtToken');
+            let exercises = await getExercises(token);
 
             if (exercises) {
 
@@ -85,7 +88,8 @@ const ExcrecisesList = () => {
                 image: null,
                 videoUrl: null
             }
-            let res = await createExercises(req)
+            const token = localStorage.getItem('jwtToken');
+            let res = await createExercises(req,token)
 
             if (res === 201) {
                 fetchExercises()
@@ -102,7 +106,7 @@ const ExcrecisesList = () => {
     return (
 
         <div className="">
-            <button onClick={addExercise}>Add new Exercise</button>
+            {contributer && <button onClick={addExercise}>Add new Exercise</button>}
             {refresh ? <ul className="exlist">
                 {exerciseslist.map((exercises, index) => <ExercisesComponent key={index} exercises={exercises} />)}
             </ul> : null}

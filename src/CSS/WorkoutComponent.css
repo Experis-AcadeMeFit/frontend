@@ -100,7 +100,7 @@ input[type="date"] {
   font-size: calc(0.2rem + (26 - 16) * ((100vw - 30rem) / (1600 - 300)));
 }
 
-.CTA {
+.wCTA {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -109,7 +109,7 @@ input[type="date"] {
   width: auto;
   border: 0;
   padding: 0.3rem;
-  padding-left: 0.3rem;
+  padding-left: 2rem;
   padding-right: 0.3rem;
   color: #FFFFFF;
   -webkit-transition: all 0.3 ease;
@@ -121,10 +121,20 @@ input[type="date"] {
   height: 1.7rem;;
   
 }
+.addtoGoals::before {
+  content: 'Add to goal';
+  font-size: calc(0.2rem + (26 - 16) * ((100vw - 30rem) / (1600 - 300)));
+  color: #fff;
+  display: inline-block;
+  position: absolute;
+  right: 5rem;
+  top: 0.7rem;
+  pointer-events: none;
+}
 
-.CTA:hover,
-.CTA:active,
-.CTA:focus {
+.wCTA:hover,
+.wCTA:active,
+.wCTA:focus {
   background: rgb(var(--lightpetrolium));
 }
 

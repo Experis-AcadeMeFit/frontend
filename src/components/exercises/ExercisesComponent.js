@@ -34,10 +34,19 @@ const ExcerciseComponent = props => {
     }
 
 
-    const addToworkout = (e) => {
-        e.stopPropagation()
-        console.log("Add shit to workout")
+    const addToworkout = async (e) => {
+
+       
+
     }
+
+
+
+
+
+
+
+
 
     //show hide excercise detail
     const toggle = () => {
@@ -85,14 +94,16 @@ const ExcerciseComponent = props => {
                     image:null,
                     videoUrl:null,
                 }
-                updateExercises(id,req)
+                let token =localStorage.getItem('jwtToken');
+                updateExercises(id,req,token)
             });
         }
 
     }
 
     const deleteEX=()=>{
-        deleteExercises(id)
+        let token =localStorage.getItem('jwtToken');
+        deleteExercises(id,token)
         let deleteme = 
         document.getElementById(id);
         deleteme.parentNode.removeChild(deleteme);

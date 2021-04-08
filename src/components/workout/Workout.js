@@ -13,9 +13,9 @@ const Workout = () => {
 
     const fetchWorkouts = async () => {
         try {
-         
-            const workouts = await getWorkouts();
-
+            let token =  await localStorage.getItem('jwtToken');
+            const workouts = await getWorkouts(token);
+            console.log(workouts)
             setWorkoutList(workouts);
         } catch (error) {
             console.error(error);
