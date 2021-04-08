@@ -27,7 +27,7 @@ const WorkoutComponent = props => {
    
 // eslint-disable-next-line 
 const fetchGoals = async () => {
-   console.log("Fetchingh Goals in workoutComponent")
+  
    try {
 
        let token =  await localStorage.getItem('jwtToken');

@@ -68,22 +68,6 @@ const Profile = (props) => {
 
 
 
-    //show profoile
-    //not working in mobile view?
-    const showProfile = () => {
-        const profileView = document.querySelector('.profile')
-
-        if (profileView.className !== 'profile popout') {
-            //profileView.classList.remove("popin")
-            //profileView.classList.add("popout");
-
-        } else {
-            //profileView.classList.remove("popout")
-            //profileView.classList.add("popin");
-        }
-
-    }
-
 
 
     useEffect(() => {
@@ -222,6 +206,7 @@ const Profile = (props) => {
             //if a user has no profile create it
             if(hasProfile===false){
             
+            // eslint-disable-next-line no-unused-vars
             const res = await createProfile(token,reqCreate)
             const userProfile = await getProfile(token)
                 if (userProfile!==false) {

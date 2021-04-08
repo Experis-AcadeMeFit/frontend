@@ -25,6 +25,7 @@ const Progress= props =>{
         }
        
        // console.log('elapsed', elapsed, ' ms', percent, ' % complete');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); 
 return(
     <div className="progresswrap">

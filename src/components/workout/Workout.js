@@ -15,7 +15,7 @@ const Workout = () => {
         try {
             let token =  await localStorage.getItem('jwtToken');
             const workouts = await getWorkouts(token);
-            console.log(workouts)
+       
             setWorkoutList(workouts);
         } catch (error) {
             console.error(error);

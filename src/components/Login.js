@@ -2,15 +2,16 @@ import { useState,useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import Dashboard from './Dashboard'
+
 import {API_URL,API_AUTHLOGIN} from '../utills/APICalls'
-import { Redirect } from 'react-router-dom';
+
 import '../CSS/Login.css'
 import {UserContext,ContributerContext ,AdminContext } from './exercises/MuscleContext';
 import { getProfile } from '../utills/CRUD'
-import Profile from './Profile'
+
 const Login=() => {
   const history = useHistory();
+   // eslint-disable-next-line 
   const [user, setUser] = useContext( UserContext);
    // eslint-disable-next-line 
   const [contributer, setContributer] = useContext( ContributerContext);
