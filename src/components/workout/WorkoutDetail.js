@@ -10,8 +10,6 @@ useEffect(() => {
   setDetail(props.detail);
 }, [props]);
 
-
-console.log(detail)
     return(
       <ul className="exlist">
         

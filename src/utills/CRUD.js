@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import { API_URL, API_EXERCISES, API_WORKOUTS } from './APICalls'
+import { API_URL, API_EXERCISES, API_WORKOUTS ,API_PROFILES,API_USERS} from './APICalls'
 
 export const getExercises = () => {
     return axios.get(API_URL + API_EXERCISES)
@@ -52,3 +52,53 @@ export const getWorkouts = () => {
         })
 }
 
+
+
+export const getUsers = (token)=>{
+    return axios.get(API_URL+API_USERS,{
+        headers: {"Authorization" : `Bearer ${token}`} 
+     })
+    .then(response => response.data)
+    .catch((error) => {
+        console.log(error);
+    })
+}
+
+
+
+export const getProfile = (token)=>{
+    
+    return axios.get(API_URL+API_PROFILES,{
+         headers: {"Authorization" : `Bearer ${token}`} 
+      })
+    .then(response => response.data)
+    .catch((error) => {
+        console.log(error);
+        return false
+    })
+}
+
+
+export const updateProfile = (idNum,req,token)=>{
+    console.log(API_URL+API_PROFILES+idNum,req)
+    return axios.patch(API_URL+API_PROFILES+idNum,req,{
+         headers: {"Authorization" : `Bearer ${token}`} 
+      })
+    .then(response => response.data)
+    .catch((error) => {
+        console.log(error);
+        return false
+    })
+}
+
+
+
+export const createProfile = (token,req)=>{
+    return axios.post(API_URL + API_PROFILES,req,{
+        headers: {"Authorization" : `Bearer ${token}`} 
+     })
+    .then(response => response.data)
+    .catch((error) => {
+        console.log(error);
+    })
+}

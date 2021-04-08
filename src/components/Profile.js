@@ -1,24 +1,25 @@
 
-import { useState, useEffect, useCallback, useMemo,useContext } from "react"
-import {UserContext,ContributerContext } from './exercises/MuscleContext';
-
+import { useState, useEffect,useRef, useContext } from "react"
+import { UserContext, ContributerContext } from './exercises/MuscleContext';
+import { createProfile,getProfile,updateProfile,getUsers } from '../utills/CRUD'
 import Profileavatar from './ProfileAvatar'
-import RangeSlider from './Slider';
+
 import '../CSS/Profile.css'
 const Profile = (props) => {
- // eslint-disable-next-line 
-    const [user, setUser] = useContext( UserContext);
-     // eslint-disable-next-line 
-    const [contributer, setContributer] = useContext( ContributerContext);
- 
+    // eslint-disable-next-line 
+    const [user, setUser] = useContext(UserContext);
+    // eslint-disable-next-line 
+    const [contributer, setContributer] = useContext(ContributerContext);
 
 
+    const formRef = useRef(null);
 
-    const [isProfile,setIsProfile] =useState('')
+    const [hasProfile, setIsProfile] = useState('')
+   
 
     //Can change--
     const [inputDisabled, setInputDisabled] = useState(true)
-  //  const [avatar, setAvatar] = useState();
+    //  const [avatar, setAvatar] = useState();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,93 +30,66 @@ const Profile = (props) => {
     const [postalcode, setPostalcode] = useState('');
     const [city, setCity] = useState('');
 
-    
-    
-    
+
+
+
     //Can change--
     //ftness attributes 
-    const [heightval, setHeightval] = useState(0);
-    const [weightval, setWeightval] = useState(0);
+    const [heightval, setHeightval] = useState();
+    const [weightval, setWeightval] = useState();
     const [BMI, setBMI] = useState(0);
-/*
-    const sliderHeightChanged = useCallback(val => {
-        setHeightval(val);
-    }, []);
 
-    const sliderWeightChanged = useCallback(val => {
-        setWeightval(val);
-    }, []);
-
-    //calculate BMI
     useEffect(() => {
+        const fetchProfile = async () => {
+            let token =await getToken()
+            let userHasprofile = await getProfile(token)
+            setIsProfile(userHasprofile)
+
+            if(userHasprofile!==false){
+                setAdress1(userHasprofile.address.addressLine1)
+                setAdress2(userHasprofile.address.addressLine2)
+                setAdress3(userHasprofile.address.addressLine3)
+                setPostalcode(userHasprofile.address.postalCode)
+                setCity(userHasprofile.address.city)
+                setHeightval(userHasprofile.height)
+                setHeightval(userHasprofile.weight)
+            }
+        }
+        fetchProfile()
+      }, [])
+
+      //calculate BMI
+      useEffect(() => {
         let BMI = (weightval / ((heightval * heightval) / 10000)).toFixed(2);
         setBMI(BMI);
     }, [heightval, weightval])
 
-    const sliderHeight = useMemo(
-        () => ({
-            min: 0,
-            max: 260,
-            value: heightval,
-            step: 2,
-            label: "height:",
-            metric: "cm",
-            onChange: e => sliderHeightChanged(e)
-        }),
-        [heightval, sliderHeightChanged]
-    );
-
-    const sliderWeight = useMemo(
-        () => ({
-            min: 0,
-            max: 250,
-            value: weightval,
-            step: 2,
-            label: "weight:",
-            metric: "kg",
-            onChange: e => sliderWeightChanged(e)
-        }),
-        [weightval, sliderWeightChanged]
-    );
 
 
-*/
 
 
-    
+    //show profoile
+    //not working in mobile view?
+    const showProfile = () => {
+        const profileView = document.querySelector('.profile')
 
-//show profoile
-  //not working in mobile view?
-  const showProfile =()=>{
-    const profileView=document.querySelector('.profile') 
+        if (profileView.className !== 'profile popout') {
+            //profileView.classList.remove("popin")
+            //profileView.classList.add("popout");
 
-    if (profileView.className !== 'profile popout') {
-      //profileView.classList.remove("popin")
-      //profileView.classList.add("popout");
+        } else {
+            //profileView.classList.remove("popout")
+            //profileView.classList.add("popin");
+        }
 
-  } else {
-    //profileView.classList.remove("popout")
-    //profileView.classList.add("popin");
-  }
-  
-  }
- // eslint-disable-next-line 
-  useEffect(() => {
-     let path = (new URL(document.location)).pathname; 
-    setIsProfile(path)
-    if(isProfile==="/profile"){
-        showProfile()
     }
-    
-    });
+
 
 
     useEffect(() => {
-      //  console.log(user.user.username)
-
-        setUsername(user.username)
+        console.log(user)
+        setUsername(user.given_name)
         setEmail(user.email)
-        setPassword(user.userpassword)
     }, [user])
 
 
@@ -131,6 +105,17 @@ const Profile = (props) => {
         const password = e.target.value;
         setPassword(password);
     };
+     
+    const onHeightChange = (e) => {
+        const height = e.target.value;
+        setHeightval(height);
+    };
+
+    const onWeightChange = (e) => {
+        const weight = e.target.value;
+        setWeightval(weight);
+    };
+
     const onAdress1Change = (e) => {
         const adress1 = e.target.value;
         setAdress1(adress1);
@@ -151,227 +136,246 @@ const Profile = (props) => {
         const city = e.target.value;
         setCity(city);
     };
- 
-    
+
+
     //change profile settings
     const changeSettings = (e) => {
         e.preventDefault();
 
-        const inputs = document.querySelectorAll('.profile  input')
+        const inputs = document.querySelectorAll('.cssgridform input')
+        const updateBTN=document.querySelector('.updateBTN')
+        const saveBTN=document.querySelector('.saveBTN')
 
         if (inputs[0].className === "") {
             setInputDisabled(false)
             inputs.forEach(input => {
                 input.classList.add("inputEnabled");
-                input.disabled = {inputDisabled}
+                input.disabled = { inputDisabled }
+        
+              
             });
-
+                updateBTN.innerHTML="Cansel";
+                updateBTN.style.background="rgba(var(--lightreyblue),1)"
+                saveBTN.style.display="block"
         } else {
             inputs.forEach(input => {
                 setInputDisabled(true)
                 input.classList.remove("inputEnabled")
-                input.disabled = {inputDisabled}
+                input.disabled = { inputDisabled }
+                
+                //Sweet hack for resetting styles on input after autocomplete
+                let ev = new Event('change');
+                let val=input.value
+                input.value=val;
+                input.dispatchEvent(ev);
 
             });
+            formRef.current.blur()
+            updateBTN.innerHTML="Update profile"
+            updateBTN.style.background="rgba(var(--petrolium),1)"
+            saveBTN.style.display="none"
         }
 
     }
+    const ask=(e)=>{
+        e.preventDefault();
 
-    const handleSumbit = (e) => {
-        console.log("wuu")
     }
+    const getToken=()=> {
+        // Retrieves the user token from localStorage
+        return localStorage.getItem('jwtToken');
+      }
+    
+    const handleSumbit = async (e) => {
+        //get the user 
+        try {
+            let token =await getToken()
+            let user = await getUsers(token)
+            //set the request for profile creation
+            let reqCreate={
+                userId: user.id,
+                address: {
+                addressLine1: adress1,
+                addressLine2: adress2,
+                addressLine3: adress3,
+                postalCode: postalcode,
+                city: city,
+                country: "country"
+                },
+                weight: weightval,
+                height: heightval
+            }
+            //set the request for profile update
+            let reqUpdate={
+                address: {
+                addressLine1: adress1,
+                addressLine2: adress2,
+                addressLine3: adress3,
+                postalCode: postalcode,
+                city: city,
+                country: "country"
+                },
+                weight: weightval,
+                height: heightval
+            }
+          
+            //if a user has no profile create it
+            if(hasProfile===false){
+            
+            const res = await createProfile(token,reqCreate)
+            const userProfile = await getProfile(token)
+                if (userProfile!==false) {
+                    console.log("userProfile from profile")
+                    console.log(userProfile)
+                    let ev = new Event('change');
+                    changeSettings(ev);
+                }
+
+            
+            }
+
+            if(hasProfile!==false){ 
+                const userProfileid = await getProfile(token)
+               updateProfile(userProfileid.id,reqUpdate,token)
+               let ev = new Event('change');
+               changeSettings(ev);
+                }
+       
+
+        } catch (error) {
+            console.error(error);
+        }
+
+
+    }
+
+   
+
+
+
+
 
     //return BMI type
     const whatTheBMI = (bmi) => {
         if (isNaN(bmi))
             return { __html: `<span class="normal"></span>` };
-        if ( bmi < 18.6)
+        if (bmi < 18.6)
             return { __html: `<span class="under">your BMI is ${bmi}<br> what do you call a thin T-Rex?<br>Ano-Rex...</span>` };
         else if (bmi >= 18.6 && bmi < 24.9)
             return { __html: `<span class="normal">your BMI is ${bmi} <br>You must be working out</span>` };
         else if (bmi >= 24.9 && bmi < 29.9)
             return { __html: `<span class="over">your BMI is ${bmi} <br><strong>Fatty Fatty boom-batty</strong></span>` };
         else
-        return { __html: `<span class="obese">your BMI is ${bmi} <br><strong>You’re so fat, even Thanos couldn’t wipe you.</strong></span>` }; 
+            return { __html: `<span class="obese">your BMI is ${bmi} <br><strong>You’re so fat, even Thanos couldn’t wipe you.</strong></span>` };
     }
 
     return (
         <div className="profileWrap">
-        <div className="profile">
-          <Profileavatar/>
-          <div className="profile_formWrap">
-          <form class="cssgridform">
-    
-    <div className="name">
-     
-      <input type="text" name="Name"
-          value={username}
-          disabled={inputDisabled}/>
-    </div>
-    
-    <div className="email">
-      
-      <input type="email" name="Email"
-          value={email}
-          disabled={inputDisabled}/>
-    </div>
-    
-    <div className="password">
-      
-      <input type="password" name="password"
-        value={password}
-          disabled={inputDisabled}/>
-    </div>
-    
-    
-    
-    
-    
-    <div className="addresses">
-       <div class="Address1">
-       
-        <input type="dddress" name="Address1"
-          disabled={inputDisabled}/>
-      </div>
-
-      <div className="Address2">
-     
-        <input type="dddress" name="Address2"
-          disabled={inputDisabled}/>
-      </div>
-
-      <div className="Address3">
-      
-        <input type="dddress" name="Address3"
-          disabled={inputDisabled}/>
-      </div>
-
-        <div className="postal">
-      
-        <input type="dddress" name="postal"
-          disabled={inputDisabled}/>
-      </div>
-
-       <div className="city">
-       
-        <input type="dddress" name="postal"
-          disabled={inputDisabled}/>
-      </div>
-    </div>
-    
-    
-    
-    <button className="PCTA">Submit</button>
-
-  </form>
-          </div>
- {/*
-          <div className="profile_formWrap">
+            <div className="profile">
+                <Profileavatar />
              
-            <form onSubmit={handleSumbit}>
-                <div className="name">
-                <input
-                    id='name-input'
-                   
+                    <form  ref={formRef} className="cssgridform" >
+                        <div className="info">
+                            <div className="name">
+                                <input type="text" name="Name"
+                              
+                                    placeholder={"username: "}
+                                    onChange={onNameChange}
+                                    value={username}
+                                    disabled={inputDisabled} />
+                            </div>
+
+                            <div className="email">
+                                <input type="email" name="Email"
+                                
+                                    placeholder={email}
+                                    onChange={onEmailChange}
+                                    value={email}
+                                    disabled={inputDisabled} />
+                            </div>
+
+                            <div className="password">
+                                <input type="password" name="password"
+                                
+                                    placeholder={"password:"}
+                                    onChange={onPasswordChange}
+                                    value={password}
+                                    disabled={inputDisabled} />
+                            </div>
+                            <div className="height">
+                                <input type="txt" name="height"
+                                
+                                    placeholder={"height:"}
+                                    onChange={onHeightChange}
+                                    value={heightval}
+                                    disabled={inputDisabled} />
+                            </div>
+                            <div className="weight">
+                                <input type="txt" name="weight"
+                                
+                                    placeholder={"weight:"}
+                                    onChange={onWeightChange}
+                                    value={weightval}
+                                    disabled={inputDisabled} />
+                            </div>
+                    
+                        </div>
+
+
+
+                        <div className="addresses">
+                            <div className="Address1">
+                                <input type="address" name="Address1"
+                                    placeholder={"adress:"}
+                                    onChange={onAdress1Change}
+                                    value={adress1}
+                                    disabled={inputDisabled} />
+                            </div>
+
+                            <div className="Address2">
+                                <input type="address" name="Address2"
+                                    placeholder={'adress:'}
+                                    onChange={onAdress2Change}
+                                    value={adress2}
+                                    disabled={inputDisabled} />
+                            </div>
+
+                            <div className="Address3">
+                                <input type="address" name="Address3"
+                                    placeholder={'adress:'}
+                                    onChange={onAdress3Change}
+                                    value={adress3}
+                                    disabled={inputDisabled} />
+                            </div>
+
+                            <div className="postal">
+                                <input type="txt" name="postal"
+                                    placeholder={'postalcode:'}
+                                    onChange={onPostalcodeChange}
+                                    value={postalcode}
+                                    disabled={inputDisabled} />
+                            </div>
+
+                            <div className="city">
+                                <input type="txt" name="city"
+                                    placeholder={'city:'}
+                                    onChange={onCityChange}
+                                    value={city}
+                                    disabled={inputDisabled} />
+                            </div>
+                        </div>
+
+
+
+
+                    </form>
+                    <div className="bmi" dangerouslySetInnerHTML={whatTheBMI(BMI)} /> 
+                   {user.roles.includes("ROLE_CONTRIBUTOR")===false && <button className="PCTA contributerBTN" onClick={ask}>want to contribute ?</button>}
+                    <button className="PCTA updateBTN" onClick={changeSettings}>Update profile</button>
+                    <button className="PCTA saveBTN" style={{display:'none'}} onClick={handleSumbit}>SAVE PROFILE</button>
                
-                    type='text'
-                    placeholder={"username: " + username}
-                    onChange={onNameChange}
-                    value={username}
-                    disabled={inputDisabled}
-                />
+                
             </div>
-            <div className="email">
-                <input
-                    id='email-input'
-                    
-             
-                    type='email'
-                    placeholder={"Email: " + email}
-                    onChange={onEmailChange}
-                    value={email}
-                    disabled={inputDisabled}
-                />
-            </div>
-            <div className="password">
-                <input
-                    id='password-input'
-                    
-                    type='password'
-                    placeholder={"password:"}
-                    onChange={onPasswordChange}
-                    value={password}
-                    disabled={inputDisabled}
-                />
-             </div>
-             <div  className="adress1">
-                <input
-                    id='adress1'
-                   
-                    type='txt'
-                    placeholder={"adress:"}
-                    onChange={onAdress1Change}
-                    value={adress1}
-                    disabled={inputDisabled}
-                />
-                </div>
-                <div className="adress2">
-                <input
-                    id='adress2'
-                    
-                    type='txt'
-                    placeholder={"adress:"}
-                    onChange={onAdress2Change}
-                    value={adress2}
-                    disabled={inputDisabled}
-                />
-                </div>
-                <div className="adress3">
-                <input
-                    id='adress3'
-                    
-                    type='txt'
-                    placeholder={"adress:"}
-                    onChange={onAdress3Change}
-                    value={adress3}
-                    disabled={inputDisabled}
-                />
-                </div>
-                <div className="postalcode">
-                <input
-                    id='postalcode'
-                    
-                    type='txt'
-                    placeholder={"postalcode:"}
-                    onChange={onPostalcodeChange}
-                    value={postalcode}
-                    disabled={inputDisabled}
-                />
-                </div>
-                <div className="city">
-                <input
-                    id='city'
-                    type='txt'
-                    placeholder={"city:"}
-                    onChange={onCityChange}
-                    value={city}
-                    disabled={inputDisabled}
-                />
-                </div>    
-
-                <div className="submit">
-                <button className="PCTA"
-                    onClick={changeSettings}
-                >change settings</button>
-                </div>
-            </form>
-            </div>
-            {/*
-            <RangeSlider {...sliderHeight} className="slider" />
-            <RangeSlider {...sliderWeight} className="slider" /> 
-            <div className="bmi" dangerouslySetInnerHTML={whatTheBMI(BMI)} />
-        */}
-        </div>
         </div>
     );
 

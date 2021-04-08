@@ -1,4 +1,5 @@
-import { useState,useContext } from 'react'
+import { useState,useContext, useEffect } from 'react'
+import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import Dashboard from './Dashboard'
@@ -6,9 +7,10 @@ import {API_URL,API_AUTHLOGIN} from '../utills/APICalls'
 import { Redirect } from 'react-router-dom';
 import '../CSS/Login.css'
 import {UserContext,ContributerContext ,AdminContext } from './exercises/MuscleContext';
-
+import { getProfile } from '../utills/CRUD'
+import Profile from './Profile'
 const Login=() => {
-
+  const history = useHistory();
   const [user, setUser] = useContext( UserContext);
    // eslint-disable-next-line 
   const [contributer, setContributer] = useContext( ContributerContext);
@@ -17,6 +19,7 @@ const Login=() => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [profile, setProfile] = useState('')
   //const [message, setMessage] = useState('')
   
   
@@ -52,14 +55,21 @@ const Login=() => {
       const decoded = jwt_decode(token)
 
       // set the current user in the top app state
-     // props.setCurrentUser(decoded)
-
-      
+   
+       const snes = await getProfile(token)
+      console.log(snes)
+      //FIX PROFILE REDIRECT
+     
        setUser(decoded)
        setContributer(decoded.roles.includes("ROLE_CONTRIBUTOR"));
        setAdmin(decoded.roles.includes("ROLE_ADMIN")); 
       
+       setProfile(snes)
+     
+    
+      
     } catch(error) {
+      
       console.log(error)
       // Error 😨
       if (error.response) {
@@ -79,16 +89,39 @@ const Login=() => {
         console.log(error.request);
     } else {
         // Something happened in setting up the request and triggered an Error
-        console.log('Error', error.message);
+       // console.log('Error', error.message);
     }
     console.log(error);
     }
   }
 
-  //Someone loged in so lets redirect to the daashboard
-  if(user) return <Redirect to='/dashboard' component={ Dashboard } />
+  //Someone loged in so lets redirect to the daashboard or profile if needet
+
+    /*<Redirect to='/dashboard' component={ Dashboard } />*/
+    
+
+    
+    
+    
+
+
+  useEffect(() => {
+      const test =()=>{
+        console.log("redirect")
+        console.log(profile)
+        if (profile){
+          history.push('/dashboard')
+        } else if(profile === false) {
+          history.push('/profile')
+        } 
+      }
+
+      test()
+  }, [history,profile])
+
 
   return (
+  
     < div className="LoginSingupWrap">
     <div className="form fade-in">
 

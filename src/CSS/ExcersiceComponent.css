@@ -81,13 +81,18 @@ transition: background-color 250ms linear;
     color: rgba(var(--darkgreyblue),1);
     pointer-events: all;
 }
-  
+
 input:disabled {
-    background-color: transparent;
+    background-color: transparent!important;
     border-color: transparent;
     margin: 0 0 0.1rem;
     padding: 0.5rem;
 }
+input:-internal-autofill-selected {
+background-color: transparent!important;
+
+}
+
   .clearfix::after {
     content: "";
     clear: both;

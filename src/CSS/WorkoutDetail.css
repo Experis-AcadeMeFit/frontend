@@ -9,7 +9,6 @@
   }
   
   .workoutheading p{
-
    width:25%;
     float:left;
      padding-bottom :0.5rem;
@@ -35,7 +34,6 @@
 }
   .detail input{
     width:25%;
-    background:blue;
      float:left;
     padding-top:0.2rem;
     padding-bottom:0.2rem;

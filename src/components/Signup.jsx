@@ -69,7 +69,7 @@ const  Signup = (props) => {
      setContributer(decoded.roles.includes("ROLE_CONTRIBUTOR"));
      setAdmin(decoded.roles.includes("ROLE_ADMIN")); 
  
-      history.replace("/dashboard");
+      history.replace("/profile");
    }
 
   const handleSumbit = async e => {

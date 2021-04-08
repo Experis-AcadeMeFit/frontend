@@ -5,9 +5,8 @@
   align-items: center;
   top: 0;
   left: 0;
-background-color: aqua;
   width: 100%;
-  height: 80%;
+  height: 100%;
   margin: auto;
 }
 .profile {
@@ -15,8 +14,9 @@ background-color: aqua;
     display: block;
     width: 50%;
     z-index: 1;
-    height: 50%;
+    height: 60%;
     margin: 0 auto;
+    
     padding: 1rem;
     text-align: center;
     background-color: rgba(var(--darkgreyblue),1);
@@ -54,14 +54,16 @@ background-color: aqua;
       "name    addresses"
       "email   addresses"
       "password  addresses"
+      "height height"
+      "weight weight"
       "submit  submit";
-        align-items: start;
- align-content: start;
+        align-items:start;
+ align-content:start;
 }
   
   .name{
     grid-area:name;
-      align-self: start;
+align-self: start;
   }
   .email{
     grid-area:email;
@@ -69,29 +71,43 @@ background-color: aqua;
   }
   .password{
     grid-area:password;
+    align-self: start;
+  }
+
+  .weight{
+    grid-area:weight;
+    align-self: start;
+  }
+  .height{
+    grid-area:height;
+    align-self: start;
   }
 
   .Address1{
-    grid-area:phone;
+    grid-area:address1;
+    align-self: start;
   }
   .Address2{
-    grid-area:phone;
+    grid-area:address2;
+    align-self: start;
   }
   .Address3{
-    grid-area:phone;
+    grid-area:address3;
+    align-self: start;
   }
 
   .postal{
-    grid-area:phone;
+    grid-area:postal;
+    align-self: start;
   }
   .city{
-    grid-area:phone;
+    grid-area:city;
+    align-self: start;
   }
 
-
-  .addresses{
-    grid-area:addresses;
-  }
+.addresses{
+  grid-area:addresses;
+}
   .formsubmit{
     grid-area:submit;
   }
@@ -107,23 +123,41 @@ background-color: aqua;
     border-radius: var(--radius);
   }
 .inputEnabled{
-    background: rgba(var(--lightreyblue),1);
+    background: rgba(var(--lightreyblue),1)!important;
     margin: 0 0 1rem;
     padding: 1rem;
     color: rgba(var(--darkgreyblue),1);
 }
-input:disabled {
-    background-color: transparent;
+.cssgridform input:disabled {
+    background-color: transparent!important;
     border-color: transparent;
     margin: 0 0 0.1rem;
     padding: 0.5rem;
 }
-.cssgridform .PCTA {
+
+.cssgridform input:-webkit-autofill {
+  background: rgba(var(--lightreyblue),1)!important;
+
+}
+.cssgridform input:autofill {
+  background: rgba(var(--lightreyblue),1)!important;
+
+}
+input:focus, input.form-control:focus {
+
+  outline:none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.profile .PCTA {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
     background:rgb(var( --petrolium));
-    width: 100%;
+    width: 40%;
     border: 0;
     padding: 0.5rem;
     color: #FFFFFF;
@@ -134,10 +168,21 @@ input:disabled {
     cursor: pointer;
     border-radius: var(--radius);
     text-align: center;
+    margin: 0 auto;
+    margin-top: 0.5rem;
   }
-  .cssgridform  .PCTA:hover,.cssgridform .PCTA:active,.cssgridform  .PCTA:focus {
-
+  .profile .PCTA:hover,.profile .PCTA:active,.profile .PCTA:focus {
     background: rgb(var(--lightpetrolium));
+  }
+
+
+
+
+  .bmi{
+    width: 100%;
+    color: #FFFFFF;
+    font-size: 80%;
+    margin: 0 auto;
   }
   /*
 .profileWrap{
