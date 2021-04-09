@@ -7,7 +7,7 @@
 
  [manual: how to use MeFit](https://github.com/Experis-AcadeMeFit/frontend/blob/main/assets/mefit-manual.pdf)
 
- [basic wireframes]('./assets/mefit-wirerframes.pdf)
+ [basic wireframes](https://github.com/Experis-AcadeMeFit/frontend/blob/main/assets/mefit-wirerframes.pdf)
 
 color scheme
 
