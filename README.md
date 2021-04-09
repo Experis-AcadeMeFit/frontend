@@ -85,7 +85,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # Developers
 
-[Kristian Andersen](https://github.com/kristianAndersen), [Lasse Minet and](https://github.com/geodk00) [Tor Leeberg](https://github.com/geodk00)
+[Kristian Andersen](https://github.com/kristianAndersen), [Lasse Minet and](https://github.com/LasseML) [Tor Leeberg](https://github.com/geodk00)
 # credits
 
 [Background photo by]("https://unsplash.com/@glbutler17?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText")[Garrett Butler]("/s/photos/motivation?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText") Unsplash
