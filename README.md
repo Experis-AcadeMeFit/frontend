@@ -1,3 +1,5 @@
+#the live version deployed to vercel
+
 # frontend
     Tecnologyes used: 
     React
@@ -13,6 +15,10 @@ color scheme
 
 ![colors](/assets/colors.png)
 # Getting Started with Create React App
+
+# Deployment
+Mefit is deployed to [Vercel](https://vercel.com/) and can be seen live here
+[mefit](https://mefit.vercel.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
