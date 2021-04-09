@@ -5,7 +5,7 @@
     Axios
     JWT Decode
 
- [manual: how to use MeFit]('./assets/mefit-manual.pdf)
+ [manual: how to use MeFit](https://github.com/Experis-AcadeMeFit/frontend/blob/main/assets/mefit-manual.pdf)
 
  [basic wireframes]('./assets/mefit-wirerframes.pdf)
 
