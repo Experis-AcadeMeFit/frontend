@@ -1,9 +1,17 @@
 # frontend
     Tecnologyes used: 
     React
-        contextAPI
+    React contextAPI
     Axios
     JWT Decode
+
+ [manual: how to use MeFit]('./assets/mefit-manual.pdf)
+
+ [basic wireframes]('./assets/mefit-wirerframes.pdf)
+
+color scheme
+
+![colors]('/assets/colors.png)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -75,6 +83,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+# Developers
+
+[Kristian Andersen](https://github.com/kristianAndersen), [Lasse Minet and](https://github.com/geodk00) [Tor Leeberg](https://github.com/geodk00)
 # credits
 
 [Background photo by]("https://unsplash.com/@glbutler17?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText")[Garrett Butler]("/s/photos/motivation?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText") Unsplash
